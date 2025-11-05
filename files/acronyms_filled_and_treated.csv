@@ -1,0 +1,491 @@
+TaxID,Name,Acronym
+1580497,Psittacine adenovirus 3,PsAdV-A
+692069,Falcon adenovirus A,FaAdv-A
+687384,Torque teno felis virus,TTFV-1
+144752,Allpahuayo virus,ALLV
+3052298,Bear canyon virus,BCNV
+3052302,Chapare virus,CHAV
+3052304,Cupixi virus,CupMV
+3052305,Flexal virus,FLEV
+3052306,Gairo virus,GAIV
+3052307,Guanarito virus,GTOV
+3052308,Ippy virus,IPPYV
+3052310,Lassa virus,LASV
+3052311,Latino virus,LATV
+3052314,Lujo virus,LUJV
+3052315,Luna virus,LUNV
+3052303,Lymphocytic choriomeningitis virus,LCMV
+3052317,Machupo virus,MACV
+3052318,Mariental virus,MRLV
+3052319,Merino Walk virus,MWV
+3052325,Mobala virus,MOBV
+3052320,Mopeia virus,MOPV
+3052321,Okahandja virus,OKAV
+3052322,Oliveros virus,OLVV
+3052324,Pirital virus,PIRV
+3052328,Tacaribe virus,TCRV
+3052331,Whitewater Arroyo virus,WWAV
+1223562,Golden Gate virus,AlReV-1
+1734439,Rat arterivirus Jilin2014,RAV-1
+1823757,Kafue kinda x chacma baboon virus,KKCBV
+364370,Turkey astrovirus 1,AastV-1
+1868658,Human astrovirus,MastV-1
+1239566,Feline astrovirus,MastV-2
+1239567,Porcine astrovirus,MastV-3
+1239574,Mink astrovirus,MastV-10
+1239577,Ovine astrovirus,MastV-13
+1885248,Variegated squirrel bornavirus 1,MaBdV-2
+1884879,Parrot bornavirus 5,PsBdV-2
+2016401,Jungle carpet python virus ,
+2016402,southwest carpet python virus,
+314539,Rabbit calicivirus,RHDV
+759938,barbel circovirus,BarCV
+1868220,Rhinolophus ferrumequinum circovirus 1,BatCV-3
+2003309,Tadarida brasiliensis circovirus 1,BatCV-4
+1194757,Canine circovirus,CnCV
+1959744,European catfish circovirus,ECCV
+3052121,Human faeces associated circovirus,HuCV
+2050585,Bat faeces associated cyclovirus 2,BaCyV-2
+2050586,Bat faeces associated cyclovirus 3,BaCyV-3
+2050587,Bat faeces associated cyclovirus 4,BaCyV-4
+2169485,Bat cyclovirus,BaCyV-5
+3052164,Florida wood cockroach cyclovirus,BaCyV-16
+1455632,Bovine cyclovirus,BoCyV-1
+1234879,Dragonfly cyclovirus 1,DrCyV-1
+1234880,Dragonfly cyclovirus 2,DrCyV-2
+1234881,Dragonfly cyclovirus 3,DrCyV-3
+1234882,Dragonfly cyclovirus 4,DrCyV-4
+1234883,Dragonfly cyclovirus 5,DrCyV-5
+1574360,Dragonfly cyclovirus 6,DrCyV-6
+1574361,Dragonfly cyclovirus 7,DrCyV-7
+1574362,Dragonfly cyclovirus 8,DrCyV-8
+11120,Infectious bronchitis virus,AvCoV
+64315,Rocio virus,IlhV
+44027,Stratford virus,KokV
+44017,Alfuy virus,MVEV
+64306,Batu cave virus,PPBV
+64287,Karshi virus,RFV
+64314,Potiskum virus,SabV
+11077,Kunjin virus,WNV
+64318,Spondweni virus,ZikV
+2847087,GB virus-B,HpcV-B
+3052230,Hepatitis C virus,HCV
+1354498,Guereza hepacivirus,HpcV-D
+1281454,Rodent hepacivirus,HpcV-E
+1281454,Rodent hepacivirus,HpcV-F
+1281454,Rodent hepacivirus,HpcV-I
+1281454,Rodent hepacivirus,HpcV-J
+1325446,Bat hepacivirus,HpcV-K
+1325446,Bat hepacivirus,HpcV-L
+1325446,Bat hepacivirus,HpcV-M
+1633878,Bovine hepacivirus,HpcV-N
+2847088,GB virus-D,PgV-B
+1307119,Theiler's disease-associated virus,PgV-D
+1463813,Equine pegivirus,PgV-E
+1112699,Bat pegivirus,PgV-F
+1112699,Bat pegivirus,PgV-G
+1112699,Bat pegivirus,PgV-I
+1321391,Rodent pegivirus,PgV-J
+1869278,Porcine pegivirus,PgV-K
+11096,Hog cholera virus,CSFV
+1511732,Amga virus,AMGV
+564878,Asama virus,ASAV
+1980458,Asikkala virus,ASIV
+3052490,Black Creek Canal virus,BCCV
+1679445,Bruges virus,BRUV
+169173,Choclo virus,CHOV
+1167310,Dabieshan virus,DBSV
+2847081,Fugong virus,FUGV
+2847084,Fusong virus,FUSV
+467989,Imjin virus,IMJV
+990280,Jeju virus,JJUV
+765147,Kenkeme virus,KKMV
+1633187,Laibin virus,LAIV
+1283294,Longquan virus,LQUV
+238817,Maporal virus,MAPV
+3052486,Montano virus,MTNV
+1145238,Necocli virus,NECV
+660955,Nova virus,NOVV
+660954,Oxbow virus,OXBV
+3052492,Prospect Hill virus,PHV
+1841195,Quezon virus,QZNV
+1001080,Rockport virus,RKPV
+3052496,Sangassou virus,SANGV
+1980493,Thottapalayam virus,TPMV
+1314974,Yakeshi virus,YKSV
+10386,Gallid herpesvirus 1,GaHV-1
+50294,Psittacid herpesvirus 1,PsHV-1
+104388,Anatid herpesvirus 1,AnHV-1
+93386,Columbid herpesvirus 1,CoHV-1
+702736,Chelonid herpesvirus 5,ChHV-5
+35243,Ateline herpesvirus 1,AtHV-1
+10295,Bovine herpesvirus 2,BoHV-2
+10317,Cercopithecine herpesvirus 2,CeHV-1
+481315,Leporid herpesvirus 4,LeHV-4
+137443,Macropodid herpesvirus 1,MaHV-1
+83440,Macropodid herpesvirus 2,MaHv-2
+340907,Papiine herpesvirus 2,PpHV-2
+10353,Saimiriine herpesvirus 1,SaiHV-1
+702738,Chelonid herpesvirus 6,ChHV-6
+10320,Bovine herpesvirus 1,BoHV-1
+35244,Bovine herpesvirus 5,BoHV-5
+202910,Bubaline herpesvirus 1,BuHV-1
+170325,Canid herpesvirus 1,CaHV-1
+39944,Caprine herpesvirus 1,CpHV-1
+35246,Cercopithecine herpesvirus 9,CeHV-9
+79891,Cervid herpesvirus 1,CvHV-1
+365327,Cervid herpesvirus 2,CvHV-2
+10326,Equid herpesvirus 1,EHV-1
+80341,Equid herpesvirus 3,EHV-3
+10331,Equid herpesvirus 4,EHV-4
+39637,Equid herpesvirus 8,EHV-8
+55744,Equid herpesvirus 9,EHV-9
+10334,Felid herpesvirus 1,FeHV-1
+47418,Phocid herpesvirus 1,PhoHV-1
+50290,Aotine herpesvirus 1,AoHV-1
+1125844,Cebine herpesvirus 1,CbHV-1
+50292,Cercopithecine herpesvirus 5,CeHV-5
+47929,Macacine herpesvirus 3,McHV-3
+188763,Panine herpesvirus 2,PaHV-2
+1535247,Saimiriine herpesvirus 4,SaHV-4
+10366,Murid herpesvirus 1,MuHV-1
+28304,Murid herpesvirus 2,MuHV-2
+1261657,Murid herpesvirus 8,MuHV-8
+146015,Elephantid herpesvirus 1,ElHV-1
+10372,Human herpesvirus 7,HHV-7
+32603,Human herpesvirus 6A,HHV-6A
+32604,Human herpesvirus 6B,HHV-6B
+33706,Caviid herpesvirus 2,CavHV-1
+1608255,Suid herpesvirus 2,SuHV-2
+10397,Tupaiid herpesvirus 1,TuHV-1
+106331,Callitrichine herpesvirus 3,CalHV-3
+159604,Gorilline herpesvirus 1,GoHV-1
+45455,Macacine herpesvirus 4,McHV-4
+159602,Panine herpesvirus 1,PaHV-1
+106332,Papiine herpesvirus 1,PpHV-1
+159603,Pongine herpesvirus 2,PoHV-2
+35252,Alcelaphine herpesvirus 1,AlHV-1
+138184,Alcelaphine herpesvirus 2,AlHV-2
+1504288,Bovine herpesvirus 6,BoHV-6
+135102,Caprine herpesvirus 2,CaHV-2
+333341,Hippotragine herpesvirus 1,HiHV-1
+10398,Ovine herpesvirus 2,OvHV-2
+12657,Equid herpesvirus 2,EqHV-2
+10371,Equid herpesvirus 5,EqHV-5
+311179,Mustelid herpesvirus 1,MusHV-1
+10380,Ateline herpesvirus 2,AtHV-2
+85618,Ateline herpesvirus 3,AtHV-3
+10385,Bovine herpesvirus 4,BoHV-4
+1605972,Cricetid herpesvirus 2,CrHV-2
+37296,Human herpesvirus 8,HHV-8
+154334,Macacine herpesvirus 5,MaHV-5
+33708,Murid herpesvirus 4,MuHV-4
+10381,Saimiriine herpesvirus 2,SaiHV-2
+291612,Equid herpesvirus 7,EqHV-7
+47419,Phocid herpesvirus 2,PhHV-2
+226584,Iguanid herpesvirus 2,IgHV-2
+10570,Rhesus monkey papillomavirus 1 ,AlPV-12
+1671798,Human papillomavirus 54,AlPV-13
+10564,Deer papillomavirus ,DePV-2
+56144,Ovine papillomavirus 1 ,DePV-3
+40537,Bovine papillomavirus 5,EpPV-1
+197771,Fringilla coelebs papillomavirus,EtPV-1
+333928,Human papillomavirus 48 ,GaPV-2
+333929,Human papillomavirus 50 ,GaPV-3
+333930,Human papillomavirus 60 ,GaPV-4
+337054,Human papillomavirus 88 ,GaPV-5
+10567,Mastomys natalensis papillomavirus,IoPV-1
+10623,Cottontail rabbit papillomavirus,KaPV-1
+122291,Rabbit oral papillomavirus,KaPV-2
+181667,Feline papillomavirus,LaPV-1
+35258,Canine oral papillomavirus,LaPV-2
+334203,Human papillomavirus 1 ,MuPV-1
+334204,Human papillomavirus 63 ,MuPV-2
+334205,Human papillomavirus 41,NuPV-1
+82676,Phocoena spinipinnis papillomavirus,OmiPV-1
+334212,Hamster oral papillomavirus,PhPV-1
+381543,Atlantic salmon paramyxovirus,AsaPV
+2560313,Avian paramyxovirus 2,APMV-2
+3052594,Avian paramyxovirus 3,APMV-3
+28274,Avian paramyxovirus 4,APMV-4
+2560315,Avian paramyxovirus 5,APMV-5
+2560316,Avian paramyxovirus 6,APMV-6
+2560317,Avian paramyxovirus 7,APMV-7
+2560318,Avian paramyxovirus 8,APMV-8
+2560326,Avian paramyxovirus 9,APMV-9
+862945,Avian paramyxovirus 10,APMV-10
+2560310,Avian paramyxovirus 11,APMV-11
+2560320,Avian paramyxovirus 12,APMV-12
+1928005,Avian paramyxovirus 14,
+1983777,Avian paramyxovirus 15,
+2560322,Avian paramyxovirus 16,
+2006072,Antarctic penguin virus A,
+2006073,Antarctic penguin virus B,
+2006074,Antarctic penguin virus C,
+2907837,Fer-de-Lance virus,FDLV
+1221391,Cedar virus,CedV
+3052223,Hendra virus,HeV
+3052225,Nipah virus,NiV
+3139435,Canine distemper virus,CDV
+11234,Measles virus,MeV
+11240,Phocine distemper virus,PDV
+11241,Rinderpest virus,RPV
+2593991,Peste-des-petits-ruminants virus,PPRV
+3052731,Sendai virus,SeV
+3052559,Mapuera virus,MaRuV
+152219,Menangle virus,MeRuV
+2560602,Mumps virus,MuV
+1452514,Sosuga virus,SoRuV
+1554501,Teviot virus,TeRuV
+162013,Tioman virus,TiRuV
+798072,Tuhoko virus 1,TuRuV-1
+798073,Tuhoko virus 2,TuRuV-2
+798074,Tuhoko virus 3,TuRuV-3
+1979755,sea star-associated densovirus,AsAdV-1
+97344,Periplaneta fuliginosa densovirus,BlAdV-1
+220638,Blattella germanica densovirus 1,BlAdV-2
+1642018,Cherax quadricarinatus densovirus,DeAdV-1
+159153,Planococcus citri densovirus,HeAdV-1
+185639,Acheta domesticus densovirus,OrAdV-1
+10809,Bombyx mori densovirus,LeIdV-1
+1221208,Papilio polyxenes densovirus,LeIdV-4
+1045778,Helicoverpa armigera densovirus,LeIdV-5
+1404345,Acheta domestica mini ambidensovirus,OrDV-1
+329639,Canine minute virus,CaBoV-1
+1511885,Canine bocavirus 1,CaBoV-2
+1174530,Feline bocavirus,CaBoV-3
+1073961,California sea lion bocavirus 3,PiBoV-2
+10784,Bovine parvovirus,UnBoV-1
+1511886,Porcine bocavirus SX,UnBoV-3
+1511887,Porcine bocavirus H18,UnBoV-4
+172296,Bovine parvovirus 2,UnCpV-1
+707546,Porcine parvovirus 4,UnCpV-2
+341671,Avian adeno-associated virus,AvDpV-1
+740950,Bat adeno-associated virus,ChDpV-1
+252602,Snake adeno-associated virus,AqDpV-1
+10798,Human parvovirus B19,PrEpV-1
+31598,Simian parvovirus,PrEpV-2
+119756,Rhesus macaque parvovirus,PrEpV-3
+119755,Pig-tailed macaque parvovirus,PrEpV-4
+56820,Chipmunk parvovirus,RoEpV-1
+172297,Bovine parvovirus 3,UnEpV-1
+74581,Rat parvovirus 1,RoPpV-2
+3052241,Herbert virus,HEBV
+1406344,Kibale virus,KIBV
+611709,Batama virus,BtObV
+2748202,Benevides virus,BnObV
+1678224,Bimiti virus,BiObV
+2849744,Botambi virus,BoObV
+35312,Capim virus,CpObV
+1678225,Catu virus,CtObV
+2170057,Estero Real virus,ERObV
+3052395,Guajara virus,GjObV
+80941,Guaroa virus,GrObV
+307164,Kaeng Khoi virus,KKObV
+80939,Kairi virus,KaObV
+348013,Madrid virus,MdObV
+80938,Main Drain virus,MDObV
+3052449,Thimiri virus,ThObV
+2748233,Timboteua virus,TiObV
+2303488,Zegla virus,ZeGkV
+1457166,Cumuto virus,CuGkV
+3052627,Badu virus,BaPsV
+3052631,Phasi Charoen-like virus,PCPsV
+3052760,Echinochloa hoja blanca virus,EHBV
+3052765,Iranian wheat stripe virus,IWSV
+3052767,Maize stripe virus,MSpV
+3052762,Rice grassy stunt virus,RGSV
+3052764,Rice hoja blanca virus,RHBV
+3052763,Rice stripe virus,RiSV
+3052766,Urochloa hoja blanca virus,UHBV
+691956,Duck hepatitis A virus,DHV
+1534546,Chicken picornavirus 3,AvV-C
+1281469,Boone cardiovirus,CrdV-C
+1330491,Human cosavirus A,HCoSV-A
+586420,Human cosavirus B,HCoSV-B
+2003650,Human cosavirus D,HCoSV-D
+2003651,Human cosavirus E,HCoSV-E
+2003652,Human cosavirus F,HCoSV-F
+1150861,Canine picodicistrovirus,CPDV
+106966,Porcine enterovirus B,EV-G
+310907,Simian enterovirus A,EV-H
+1637527,Dromedary camel enterovirus,EV-I
+147711,Human rhinovirus A,HRV-A
+147712,Human rhinovirus B,HRV-B
+463676,Human rhinovirus C,HRV-C
+312185,Equine rhinitis B virus ,ErbV-A
+1708572,Phopivirus,HepV-B
+1745250,Bat hepatovirus,HepV-C
+1745247,Rodent hepatovirus,HepV-D
+1745247,Rodent hepatovirus,HepV-E
+1745247,Rodent hepatovirus,HepV-F
+1745250,Bat hepatovirus,HepV-G
+1745249,Hedgehog hepatovirus,HepV-H
+1745248,Shrew hepatovirus,HepV-I
+1756444,Rabbit picornavirus,AiV-E
+3128441,Bat kobuvirus,AiV-F
+2870354,Carp picornavirus 1,LiV-B
+980963,Turkey hepatitis virus,MelV-A
+2870378,Miniopterus schreibersii picornavirus 1,MiV-A
+1281456,Bat picornavirus,MiV-B
+1074428,Mouse Mosavirus,MoV-A
+1803956,Human parechovirus,PeV-A
+172314,Ljungan virus,PeV-B
+1294177,Sebokele virus 1,PeV-C
+2870364,Eel picornavirus 1,PoV-A
+2874388,Duck picornavirus,ASAPV
+390157,Seneca valley virus,SeVV-A
+118140,Porcine teschovirus,TeV-A
+1578826,Tortoise picornavirus,TXV-A
+3136119,Bovine respiratory syncytial virus,BOPV
+11250,Human respiratory syncytial virus,HOPV
+1623684,Bat polyomavirus 5b,ACPyV-1
+3120778,Bat polyomavirus 3a,APlayV-2
+2758137,Bat polyomavirus 4a,AplaPyV-3
+1891718,Cardioderma polyomavirus,CcorPyV-1
+2758138,Bat polyomavirus 4b,CperPyV-1
+1623687,Bat polyomavirus 5a,DmolPyV-1
+1273089,Eidolon polyomavirus,EhelPyV-1
+928214,Gorilla gorilla gorilla polyomavirus 1,GgorPyV
+493803,Merkel cell polyomavirus,HPyV-5
+862909,Trichodysplasia spinulosa-associated polyomavirus,HPyV-8
+1891730,Murine polyomavirus,MmusPyV
+305677,Chimpanzee polyomavirus,PtroPyV-1
+1286213,Yellow baboon polyomavirus 1,PcynPyV-1
+1604875,Sumatran orang-utan polyomavirus,PabePyV
+1604874,Bornean orang-utan polyomavirus,PpygPyV
+1219896,Raccoon polyomavirus,PlotPyV
+1191100,Equine polyomavirus,EcabPyV-1
+1891762,BK polyomavirus,HPyV-1
+10632,JC polyomavirus,HPyV-2
+1891764,KI polyomavirus,HPyV-3
+440266,WU polyomavirus,HPyV-4
+1399914,African elephant polyomavirus 1,LafrPyV
+1891767,Simian virus 40,MmulPyV
+1891768,Mastomys natalensis polyomavirus 1,MnatPyV
+1273090,Miniopterus polyomavirus,MafrPyV
+1762023,Pan troglodytes verus polyomavirus 8,PtroPyV-8
+1273092,Pteronotus polyomavirus,PdavPyV-1
+1221637,Bat polyomavirus,PdavPyV
+452475,Squirrel monkey polyomavirus,SbolPyV
+208491,Goose hemorrhagic polyomavirus,AansPyV
+349563,Crow polyomavirus,CmonPyV
+1394033,Butcherbird polyomavirus,CtorPyV
+349564,Finch polyomavirus,PpyrPyV
+881945,Canary polyomavirus,ScanPyV
+2849508,Black sea bass-associated polyomavirus 1,CstriPyV
+10264,Pigeon pox virus,PGPV
+10271,Shope fibroma virus,RbFV
+2547356,Fomede virus,CGV
+104581,St Croix River virus,StCRV
+444184,Simian rotavirus A,RV-A
+134606,Trichoplusia ni cypovirus 15,CPV-15
+59730,Choristoneura fumiferana cypovirus 16,CPV-16
+226613,Reptilian orthoreovirus,RpRV
+11642,Simian foamy virus,SFVcpz
+1972683,Arboretum virus,ABTV
+1972684,Balsa virus,BALV
+1972685,Coot Bay virus,CBV
+1479613,Puerto Almendras virus,PTAMV
+1972687,Rio Chico virus,RCHV
+490110,Curionopolis virus,CURV
+1620893,Iriri virus,IRIRV
+490111,Itacaiunas virus,ITAV
+380435,Rochambeau virus,RBUV
+998864,Alfalfa dwarf virus,ADV
+1985699,Barley yellow striate mosaic virus,BYSMV
+1775456,Colocasia bobone disease-associated virus,CBDaV
+32612,Lettuce necrotic yellows virus,LYNYV
+471285,Lettuce yellow mottle virus,LYMoV
+1985704,Northern cereal mosaic virus,NCMV
+135656,Strawberry crinkle virus,SCV
+745716,Coffee ringspot virus,CoRSV
+152177,Orchid fleck virus,OFV
+31612,Adelaide river virus,AdRV
+318834,Berrimah virus,BRMV
+11303,Bovine ephemeral fever virus,BEFV
+318835,Kimberley virus,KIMV
+1550518,Koolpinyah virus,KOOLV
+318836,Kotonkan virus,KOTV
+380160,Obodhiang virus,OBOV
+1272960,Yata virus,YATV
+1972612,Flanders virus,FLAV
+1272942,Gray Lodge virus,GLOV
+200401,Hart Park virus,HPV
+1272943,Joinjakaka virus,JOIV
+200402,Kamese virus,KAMV
+1272946,La Joya virus,LJV
+1272947,Landjia virus,LJAV
+1272949,Manitoba virus,MANV
+1158190,Marco virus,MCOV
+200403,Mosqueiro virus,MQOV
+200404,Mossuril virus,MOSV
+1972623,Ngaingan virus,NGAV
+318845,Parry Creek virus,PCV
+1972626,Wongabel virus,WONV
+380438,Barur virus,BARV
+1408144,Fikirini rhabdovirus,FKRV
+318849,Fukuoka virus,FUKV
+380433,Kern Canyon virus,KCV
+380440,Keuraliba virus,KEUV
+1428456,Kolente virus,KOLEV
+1537975,Kumasi rhabdovirus,KRV
+318848,Le Dantec virus,LDV
+380434,Mount Elgon bat virus,MEBV
+1978536,Nishimuro virus,NISV
+380442,Nkolbisson virus,NKOV
+1272953,Oita virus,OITAV
+1608119,Wuhan louse fly virus 5,WLFV-5
+1608146,Yongjia tick virus 2,YjTV-2
+211977,Aravan virus,ARAV
+1072176,Bokeloh bat lyssavirus,BBLV
+249583,Irkut virus,IRKV
+237716,Khujand virus,KHUV
+38766,Lagos bat virus,LBV
+12538,Mokola virus,MOKV
+11292,Rabies virus,RABV
+746543,Shimoni bat virus,SHIBV
+1980915,Hirame rhabdovirus,HIRV
+103603,Snakehead rhabdovirus,SHRV
+195059,Datura yellow vein virus,DYVV
+488317,Eggplant mottled dwarf virus,EMDV
+209854,Maize fine streak virus,MFSV
+348823,Maize Iranian mosaic virus,MIMV
+279896,Maize mosaic virus,MMV
+195060,Potato yellow dwarf virus,PYDV
+59380,Rice yellow stunt virus,RYSV
+11307,Sonchus yellow net virus,SYNV
+2358214,Sowthistle yellow vein virus,SYVV
+2908018,Taro vein chlorosis virus,TaVCV
+696863,Spring viremia of carp virus,SVCV
+318843,Almpiwar virus,ALMV
+1158189,Chaco virus,ChSV
+1348439,Niakha virus,NIAV
+1272957,Sena Madureira virus,SMV
+1620897,Sripur virus,SRIV
+1987017,Bas-Congo virus,BASV
+764599,Coastal Plains virus,CPV
+1987020,Ekpoma virus 1,EKV-1
+1987021,Ekpoma virus 2,EKV-2
+1272958,Sweetwater Branch virus,SWBV
+710545,Durham virus,DURV
+909206,Klamath virus,KLAV
+318558,Tupaia virus,TUPV
+1985698,Lettuce big vein-associated virus,LBVaV
+1972564,American bat vesiculovirus,ABVV
+239239,Carajas virus,CJSV
+11272,Chandipura virus,CHPV
+50713,Cocal virus,COCV
+11277,Vesicular stomatitis Indiana virus,VSIV
+290008,Isfahan virus,ISFV
+1972568,Jurona virus,JURV
+1972570,Malpais Spring virus,MSPV
+1972574,Maraba vesiculovirus,MARAV
+1972565,Morreton virus,MORV
+11280,Vesicular stomatitis New Jersey virus,VSNJV
+1972569,Perinet virus,PERV
+11274,Piry virus,PIRYV
+1972566,Radi virus,RADIV
+1972567,Yug Bogdanovac virus,YBV
+60879,Cabassou virus,CBSV
+59303,Sagiyama virus,RRV

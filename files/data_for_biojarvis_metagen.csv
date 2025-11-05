@@ -1,0 +1,136 @@
+ID,TaxID,Rank,Organism,Hosts,Transmissions,Diseases
+1,1511891,Species,Dependoparvovirus primate1,"Human, Vertebrates",Respiratory,Asymptomatic
+2,72149,Species,Aichivirus A,Human,Fecal-oral,Gastroenteritis
+3,90961,Species,Lyssavirus australis,"Human, Bats","Zoonosis, Animal bite",Fatal encephalitis
+4,77763,Species,Banna virus,"Human, Cattle, Pig, Mosquitoes","Zoonosis, Arthropod bite",Encephalitis
+5,11020,Species,Barmah Forest virus,"Human, Mosquitoes, Marsupials","Zoonosis, Arthropod bite","Fever, Joint pain"
+6,1891762,Species,Betapolyomavirus hominis,Human,"Respiratory fluids, Urine",Asymptomatic
+7,1933179,Species,Bunyamwera orthobunyavirus,"Human, Mosquitoes","Zoonosis, Arthropod bite",Encephalitis
+8,2560547,Species,La Crosse orthobunyavirus,"Human, Mosquitoes, Deer, Tamias","Zoonosis, Arthropod bite",Encephalitis
+9,2560767,Species,Snowshoe hare orthobunyavirus,"Human, Mosquitoes, Rodents, Rodents","Zoonosis, Arthropod bite",Encephalitis
+10,10317,No Rank,Cercopithecine alphaherpesvirus 2,"Human, Monkeys","Zoonosis, Animal bite",Encephalitis
+11,1972576,Species,Vesiculovirus chandipura,"Human, Sandflies","Zoonosis, Athropod bite",Encephalitis
+12,37124,Species,Chikungunya virus,"Human, Mosquitoes, Monkeys","Zoonosis, Arthropod bite","Fever, Joint pain"
+13,1330491,Species,Cosavirus A,Human,Fecal-oral (probable),
+14,10243,Species,Cowpox virus,"Human, Mammals","Zoonosis, Contact",Asymptomatic
+15,138948,Species,Enterovirus A,Human,Fecal-oral,"Meningitis, Myocarditis, Paralysis"
+16,1980519,Species,Crimean-Congo hemorrhagic fever orthonairovirus,"Human, Vertebrates, Ticks","Zoonosis, Arthropod bite",Hemorrhagic fever
+17,12637,No Rank,Dengue virus,"Human, Mosquitoes","Zoonosis, Arthropod bite",Hemorrhagic fever
+18,11318,Species,Thogotovirus dhoriense,"Human, Ticks","Zoonosis, Arthropod bite","Encephalitis, Fever"
+19,1980521,Species,Dugbe orthonairovirus,"Human, Ticks","Zoonosis, Arthropod bite",Thrombocytopaenia
+20,38767,Species,Lyssavirus duvenhage,"Human, Mammals","Zoonosis, Animal bite",Fatal encephalitis
+21,11021,Species,Eastern equine encephalitis virus,"Human, Mosquitoes, Birds","Zoonosis, Arthropod bite",Encephalitis
+22,186538,No Rank,Zaire ebolavirus,"Human, Bats, Monkeys","Zoonosis, Contact",Hemorrhagic fever
+23,1803956,Species,Parechovirus A,Human,Fecal-ora,Common cold
+24,1821749,Species,Cardiovirus A,"Human, Pig, Mouse, Rat",Zoonosis,Encephalitis
+25,10376,No Rank,Human gammaherpesvirus 4,Human,"Contact, Saliva",Mononucleosis
+26,57482,No Rank,European bat 1 lyssavirus,"Human, Bats","Zoonosis, Animal bite",Fatal encephalitis
+27,1985356,Species,Pegivirus C,Human,"Blood, Occasionally sexual",Undocumented
+28,1980471,Species,Hantaan orthohantavirus,"Human, Rodents","Zoonosis, Urine, Saliva","Renal, Respiratory syndrome"
+29,63330,Species,Hendra henipavirus,"Human, Bats, Horse","Zoonosis, Animal bite",Encephalitis
+30,12092,Species,Hepatovirus A,Human,Fecal-oral,Hepatitis
+31,10407,Species,Hepatitis B virus,"Human, Chimpanzees","Blood, Sexual contact",Hepatitis
+32,11103,Species,Hepacivirus C,Human,"Blood, Sexual",Hepatitis
+33,12475,Species,Hepatitis delta virus,Human,"Blood, Sexual contact",Hepatitis
+34,1678143,Species,Paslahepevirus balayani,"Human, Pig, Monkeys, Some rodents, Chicken","Zoonosis, Food",Hepatitis
+35,129951,Species,Human mastadenovirus C,Human,"Respiratory, Fecal-oral",Respiratory
+36,1868658,Species,Human astrovirus,Human,Fecal-oral,Gastroenteritis
+37,11137,Species,Human coronavirus 229E,Human,"Respiratory, Respiratory fluids",Respiratory
+38,10359,No Rank,Human betaherpesvirus 5,Human,"Urine, Contact, Saliva","Mononucleosis, Pneumonia"
+39,138951,Species,Enterovirus D,Human,Fecal-oral,"Diarrhea, Neurological disorder"
+40,10298,No Rank,Human alphaherpesvirus 1,Human,"Saliva, Sexual contact",Skin lesions
+41,10310,No Rank,Human alphaherpesvirus 2,Human,"Saliva, Sexual contact",Skin lesions
+42,32603,No Rank,Human betaherpesvirus 6A,Human,"Respiratory, Contact",Skin lesions
+43,10372,No Rank,Human betaherpesvirus 7,Human,"Respiratory, Contact",Skin lesions
+44,37296,No Rank,Human gammaherpesvirus 8,Human,"Saliva, Sexual contact",kin lymphoma
+45,11676,Species,Human immunodeficiency virus 1,Human,"Blood, Sexual contact",AIDS
+46,334203,Species,Mupapillomavirus 1,Human,Contact ,Skin warts
+47,337041,Species,lphapapillomavirus 9,Human,Sexual,Genital warts
+48,337043,Species,Alphapapillomavirus 4,Human,Contact,Skin warts
+49,12730,No Rank,Human respirovirus 1,Human,Respiratory,Respiratory
+50,1511900,Species,Primate erythroparvovirus 1,Human,Respiratory,Skin lesion
+51,11250,No Rank,Human orthopneumovirus,Human,Respiratory,Respiratory
+52,147711,Species,Rhinovirus A,Human,Respiratory,Respiratory
+53,694009,Species,Severe acute respiratory syndrome-related coronavirus,"Human, Palm civet","Respiratory, Zoonosis, Respiratory fluids",Respiratory syndrome
+54,11642,Species,Simian foamy virus,Human,"Contact, Saliva",
+55,194440,Species,Primate T-lymphotropic virus 1,Human,"Sexual contact, Maternal-neonatal",Leukemia
+56,67605,Species,Human torovirus,Human,Fecal-oral,Gastroenteritis
+57,11320,No Rank,Influenza A virus,"Human, Birds, Pigs","Respiratory, Zoonosis, Animal contact",Flu
+58,11520,No Rank,Influenza B virus,Human,Respiratory,Flu
+59,11552,No Rank,Influenza C virus,Human,Respiratory,Flu
+60,1972573,Species,Vesiculovirus isfahan,"Human, Sandflies, Gerbils","Zoonosis, Arthropod bite","Encephalitis, Undocumented"
+61,11072,No Rank,Japanese encephalitis virus,"Human, Mosquitoes, Birds, Horses","Zoonosis, Arthropod borne",Encephalitis
+62,1891763,Species,Betapolyomavirus secuhominis,Human,"Fecal-oral, Urine",Encephalitis
+63,2169991,Species,Mammarenavirus juninense,"Human, Rodents","Zoonosis, Fomite",Hemorrhagic fever
+64,1891764,Species,Betapolyomavirus tertihominis,Human,"Fecal-oral, Urine",Encephalitis
+65,38766,Species,Lyssavirus lagos,"Human, Mammals","Zoonosis, Animal bite",Fatal encephalitis
+66,11269,Species,Marburg marburgvirus,"Human, Bats, Monkeys","Zoonosis, Fomite",Hemorrhagic fever
+67,11085,No Rank,Langat virus,"Human, Ticks","Zoonosis, Arthropod borne",Encephalitis
+68,11620,Species,Lassa mammarenavirus,"Human, Rats","Zoonosis, Fomites",Hemorrhagic fever
+69,11086,No Rank,Louping ill virus,"Human, Mammals, Ticks","Zoonosis, Arthropod bite",Encephalitis
+70,11623,Species,Lymphocytic choriomeningitis mammarenavirus,"Human, Rodents","Zoonosis, Fomite",Encephalitis
+71,11628,Species,Machupo mammarenavirus,"Human, Monkeys, Mouse","Zoonosis, Fomite",Encephalitis
+72,59301,Species,Mayaro virus,"Human, Mosquitoes","Zoonosis, Arthropod bite","Fever, Joint pain"
+73,11234,No Rank,Measles morbillivirus,Human,Respiratory,"Fever, Rash"
+74,1891726,Species,Alphapolyomavirus quintihominis,Human,,Merkel cell carcinoma
+75,1335626,Species,Middle East respiratory syndrome-related coronavirus,"Human, Tomb bat",Zoonosis,Respiratory
+76,12538,Species,Lyssavirus mokola,"Human, Rodents, Cat, Dog shrew","Zoonosis, Animal bite",Encephalitis
+77,10279,Species,Molluscum contagiosum virus,Human,Contact,Skin lesions
+78,10244,Species,Monkeypox virus,"Human, Mouse, Prairie dog","Zoonosis, Contact",Skin lesions
+79,2560602,No Rank,Mumps orthorubulavirus,Human,"Respiratory, Saliva","Mumps, Caxumba"
+80,11079,No Rank,Murray Valley encephalitis virus,"Human, Mosquitoes","Zoonosis, Arthropod bite",Encephalitis
+81,44755,Species,New York hantavirus,"Human, Mouse","Zoonosis, Urine, Saliva",Hemorrhagic fever
+82,121791,Species,Nipah henipavirus,"Human, Bats","Zoonosis, Animal bite",Encephalitis
+83,2169701,Species,Onyong-nyong virus,"Human, Mosquitoes","Zoonosis, Arthropod bite","Fever, Joint pain"
+84,10258,Species,Orf virus,"Human, Mammals","Zoonosis, Contact",Skin lesions
+85,1933309,Species,Oropouche orthobunyavirus,"Human, Wild animals(sloths)","Zoonosis, Arthropod bite","Fever, Joint pain"
+86,2169993,Species,Cali mammarenavirus,"Human, Rat, Guinea pig","Zoonosis, Fomite",Hemorrhagic fever
+87,138950,Species,Enterovirus C,"Human, Mammals",Fecal-oral,Poliomyelitis
+88,1933186,Species,Punta Toro phlebovirus,"Human, Sandflies","Zoonosis, Arthropod bite",Hemorrhagic fever
+89,1980486,Species,Puumala orthohantavirus,"Human, Bank vole","Zoonosis, Urine",Hemorrhagic fever
+90,11292,Species,Lyssavirus rabies,"Human, Mammals","Zoonosis, Animal bite",Fatal encephalitis
+91,1933187,Species,Rift Valley fever phlebovirus,"Human, Mosquitoes, Sandflies, Mammals","Zoonosis, Arthropod bite",Hemorrhagic fever
+92,1511805,Species,Rosavirus A,Human,,
+93,11029,Species,Ross River virus,"Human, Mosquitoes, Marsupials","Zoonosis, Arthropod bite","Fever, Joint pain"
+94,28875,Species,Rotavirus A,Human,Fecal-oral,Gastroenteritis
+95,28876,Species,Rotavirus B,Human,Fecal-oral,Gastroenteritis
+96,36427,Species,Rotavirus C,Human,Fecal-oral,Gastroenteritis
+97,11041,No Rank,Rubella virus,Human,Respiratory,Rubella
+98,59300,Species,Getah virus,"Human, Pig, Mosquitoes, Horse","Zoonosis, Arthropod bite","Fever, Joint pain"
+99,1330524,Species,Salivirus A,Human,,Gastroenteritis
+100,2734473,Species,Sicilian phlebovirus,"Human, Sandflies","Zoonosis, Arthropod bite",Hemorrhagic fever
+101,95342,Species,Sapporo virus,Human,Fecal-oral,Gastroenteritis
+102,11033,Species,Semliki Forest virus,"Human, Mosquitoes, Birds, Hedgehog","Zoonosis, Arthropod bite","Fever, Joint pain"
+103,1980490,Species,Seoul orthohantavirus,"Human, Rats","Zoonosis, Urine, Saliva",Hemorrhagic fever
+104,2560580,No Rank,Mammalian orthorubulavirus 5,"Human, Dog","Zoonosis, Contact",Undocumented
+105,11034,Species,Sindbis virus,"Human, Mosquitoes, Birds","Zoonosis, Arthropod bite","Fever, Joint pain"
+106,11983,Species,Norwalk virus,Human,Fecal-oral,Gastroenteritis
+107,11080,No Rank,Saint Louis encephalitis virus,"Human, Mosquitoes, Birds","Zoonosis, Arthropod bite",Encephalitis
+108,11083,No Rank,Powassan virus,"Human, Ticks","Zoonosis, Arthropod bite",Encephalitis
+109,687340,No Rank,Torque teno virus 1,Human,"Blood, Sexual/Sexual",
+110,2747931,Species,Naples phlebovirus,"Human, Mosquitoes","Zoonosis, Arthropod bite",Hemorrhagic fever
+111,2749936,Species,Uukuniemi uukuvirus,"Human, Ticks","Zoonosis, Arthropod bite",Hemorrhagic fever
+112,10245,Species,Vaccinia virus,"Human, Mammals",Contact,
+113,10335,No Rank,Human alphaherpesvirus 3,Human,"Respiratory, Contact",Varicella
+114,10255,Species,Variola virus,Human,Respiratory,Variola
+115,11036,Species,Venezuelan equine encephalitis virus,"Human, Mosquitoes, Rodents","Zoonosis, Arthropod bite","Fever, Joint pain"
+116,1972577,Species,Vesiculovirus indiana,"Human, Cattle, Pig, Horse, Flies","Zoonosis, Athropod bite",Encephalitis
+117,11082,No Rank,West Nile virus,"Human, Mosquitoes, Ticks, Birds","Zoonosis, Arthropod bite",Hemorrhagic fever
+118,11039,Species,Western equine encephalitis virus,"Human, Vertebrates, Mosquitoes","Zoonosis, Arthropod bite","Fever, Joint pain"
+119,1891765,Species,Betapolyomavirus quartihominis,Human,"Respiratory fluids, Urine",
+120,38804,Species,Yaba monkey tumor virus,"Human, Monkeys","Zoonosis, Contact",
+121,99000,Species,Tanapox virus,"Human, Monkeys","Zoonosis, Contact",
+122,11089,No Rank,Yellow fever virus,"Human, Mosquitoes, Monkeys","Zoonosis, Arthropod bite",Hemorrhagic fever
+123,64320,No Rank,Zika virus,"Human, Mosquitoes, Monkeys","Zoonosis, Arthropod bite","Fever, Joint pain, Rash"
+124,277944,Species,Human coronavirus NL63,Human,"Respiratory, Respiratory fluids",Common cold
+125,2844582,Species,Gemykibivirus humas2,Human,Unknown,Undocumented
+126,130309,Species,Human mastadenovirus F,Human,Fecal-oral,Gastroenteritis
+127,1972578,Species,Vesiculovirus newjersey,"Human, Cattle, Pig, Mosquitoes, Sandflies","Zoonosis, Arthropod bite","Fatal encephalitis, Encephalitis"
+128,138949,Species,Enterovirus B,Human,"Respiratory, Fecal-oral, Saliva","Gastroenteritis, Fatal encephalitis, Encephalitis"
+129,2169992,Species,Brazilian mammarenavirus,"Human, Rodents, Mammals","Urine, Fecal-oral (probable)",Hemorrhagic fever
+130,683172,Species,Astrovirus MLB2,Human,Fecal-oral,"Gastroenteritis, Encephalitis"
+131,463676,Species,Rhinovirus C,Human,"Respiratory, Respiratory fluids",Common cold
+132,3052230,Species,Hepacivirus hominis,Human,"Blood, Sexual",Hepatitis
+133,3052299,Species,Mammarenavirus brazilense,"Rodents, Mammals","Fecal-oral, Zoonosis, Urine","Fever, Hemorrhagic fever"
+134,3052464,Species,Orthoflavivirus denguei,Human,Arthropod bite,"Encephalitis, Fever, Joint pain, Hemorrhagic fever"
+135,3052608,Species,Pegivirus hominis,Human,"lood, Occasionally sexual",Asymptomatic
