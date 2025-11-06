@@ -5,8 +5,8 @@ import json
 
 if __name__ == '__main__':
     bio_jarvis = MetagenomicsAssistant(aws_handler=AwsHandler())
-    greetings_to_user()
-    user_tax_id = get_integer_tax_id('Enter the Organism TaxID: ')
-    organism_info =  bio_jarvis.set_organism_fields(user_tax_id)
+    print(greetings_to_user())
+    user_tax_id = input('Enter the TaxID: ')
+    organism_info = bio_jarvis.set_organism_fields(user_tax_id)
     final_text = bio_jarvis.invoke_bedrock_model(user_tax_id)
     print(f'{final_text}\n{farwell_to_user()}')

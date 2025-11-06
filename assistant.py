@@ -1,11 +1,12 @@
-# Libraries
-from ete4 import NCBITaxa # Provides access to taxonomy data
-import json # Handling json variables
-import pandas as pd # Data analysis and csv manipulation
-import re # Operations with regular expressions
-from Bio import Entrez # Provides code to access NCBI over the WWW.
+from ete4 import NCBITaxa
+import json
+import pandas as pd
+import re
+from Bio import Entrez
 from aws_handler import AwsHandler 
 from utils import is_null, set_prompt_text
+from constants import DEFAULT_EMAIL
+Entrez.email = DEFAULT_EMAIL
 
 class MetagenomicsAssistant:
     def __init__(self, aws_handler: AwsHandler):
@@ -14,6 +15,9 @@ class MetagenomicsAssistant:
         self.df_text = pd.read_csv('./files/old_reports.csv')
         self.df_data = pd.read_csv('./files/data_for_biojarvis.csv')
         self.df_acronym = pd.read_csv('./files/acronyms.csv')
+        
+        self.df_data['TaxID'] = self.df_data['TaxID'].astype(str)
+        self.df_acronym['TaxID'] = self.df_acronym['TaxID'].astype(str)
 
     def set_text_to_prompt(self):
         """
@@ -26,29 +30,44 @@ class MetagenomicsAssistant:
         """
         Get family or genus of organism by TaxID
         """
-        organism_lineage = self.ncbi.get_lineage(tax_id)
-        organism_ranks = self.ncbi.get_rank(organism_lineage)
-        organism_names = self.ncbi.get_taxid_translator(organism_lineage)
+        try:
+            organism_lineage = self.ncbi.get_lineage(tax_id)
+            organism_ranks = self.ncbi.get_rank(organism_lineage)
+            organism_names = self.ncbi.get_taxid_translator(organism_lineage)
 
-        for taxon_id in organism_lineage:
-            if organism_ranks.get(taxon_id) == rank:
-                return organism_names.get(taxon_id) 
-        return None
+            for taxon_id in organism_lineage:
+                if organism_ranks.get(taxon_id) == rank:
+                    return organism_names.get(taxon_id) 
+            return None
+        except Exception as e:
+            print(f"Erro ao obter rank {rank} para TaxID {tax_id}: {e}")
+            return None
     
     def get_organism_name(self, tax_id):
         """
         Get only organism name from taxid_dict
         """
-        taxid_dict = self.ncbi.get_lineage_translator([tax_id])
-        return taxid_dict.get(tax_id, '')
+        try:
+            tax_id_int = int(tax_id) if isinstance(tax_id, str) else tax_id
+            taxid_dict = self.ncbi.get_taxid_translator([tax_id_int])
+            return taxid_dict.get(tax_id_int, '')
+        except Exception as e:
+            print(f"Erro ao obter nome para TaxID {tax_id}: {e}")
+            return ''
     
     def get_organism_disease(self, tax_id):
         """
         Get organism disease from 'data_for_biojarvis.csv' by TaxID
         """
         try:
-            return self.df_data.loc[self.df_data['TaxID'] == tax_id, 'Diseases'].values[0]
-        except IndexError:
+            tax_id_str = str(tax_id)
+            result = self.df_data.loc[self.df_data['TaxID'] == tax_id_str, 'Diseases']
+            if not result.empty:
+                value = result.values[0]
+                return value if not is_null(value) else None
+            return None
+        except Exception as e:
+            print(f"Erro ao obter doença para TaxID {tax_id}: {e}")
             return None
     
     def get_organism_transmission(self, tax_id):
@@ -56,8 +75,14 @@ class MetagenomicsAssistant:
         Get organism transmission from 'data_for_biojarvis.csv' by TaxID
         """
         try:
-            return self.df_data.loc[self.df_data['TaxID'] == tax_id, 'Transmissions'].values[0]
-        except IndexError:
+            tax_id_str = str(tax_id)
+            result = self.df_data.loc[self.df_data['TaxID'] == tax_id_str, 'Transmissions']
+            if not result.empty:
+                value = result.values[0]
+                return value if not is_null(value) else None
+            return None
+        except Exception as e:
+            print(f"Erro ao obter transmissão para TaxID {tax_id}: {e}")
             return None
     
     def get_organism_hosts(self, tax_id):
@@ -65,8 +90,14 @@ class MetagenomicsAssistant:
         Get organism hosts from 'data_for_biojarvis.csv' by TaxID
         """
         try:
-            return self.df_data.loc[self.df_data['TaxID'] == tax_id, 'Hosts'].values[0]
-        except IndexError:
+            tax_id_str = str(tax_id)
+            result = self.df_data.loc[self.df_data['TaxID'] == tax_id_str, 'Hosts']
+            if not result.empty:
+                value = result.values[0]
+                return value if not is_null(value) else None
+            return None
+        except Exception as e:
+            print(f"Erro ao obter hosts para TaxID {tax_id}: {e}")
             return None
     
     def get_organism_acronym(self, tax_id):
@@ -74,36 +105,49 @@ class MetagenomicsAssistant:
         Get organism Acronym (if exists) from 'acronym.csv' by TaxID
         """
         try:
-            return self.df_acronym.loc[self.df_acronym['TaxID'] == tax_id, 'Acronym'].values[0]
-        except IndexError:
+            tax_id_str = str(tax_id)
+            result = self.df_acronym.loc[self.df_acronym['TaxID'] == tax_id_str, 'Acronym']
+            if not result.empty:
+                value = result.values[0]
+                return value if not is_null(value) else None
+            return None
+        except Exception as e:
+            print(f"Erro ao obter acrônimo para TaxID {tax_id}: {e}")
             return None
     
     def get_genome_size(self, tax_id):
         """
         Access 'nucleotide' database and get organism size.
         """
-        scientific_name = self.get_organism_name(tax_id)
-        handle_data = Entrez.esearch(
-            db = 'nucleotide',
-            term = f'{scientific_name} [Organism] AND complete genome',
-            retmax = 10
-        )
-        record_articles = Entrez.read(handle_data)
-        handle_data.close()
-
-        for sequence_id in record_articles.get('IdList', []):
-            handle_data = Entrez.efetch(
-                db = 'bucleotide', 
-                id = sequence_id, 
-                rettype = 'gb',
-                retmode = 'text'
+        try:
+            scientific_name = self.get_organism_name(tax_id)
+            if not scientific_name:
+                return ''
+                
+            handle_data = Entrez.esearch(
+                db = 'nucleotide',
+                term = f'{scientific_name} [Organism] AND complete genome',
+                retmax = 10
             )
-            gb_text = handle_data.read()
+            record_articles = Entrez.read(handle_data)
             handle_data.close()
-            match_search = re.search(r'LOCUS\s+\S+\s+(\d+)\s+bp', gb_text)
-            if match_search:
-                return int(match_search.group(1))
-        return None
+
+            for sequence_id in record_articles.get('IdList', []):
+                handle_data = Entrez.efetch(
+                    db = 'nucleotide', 
+                    id = sequence_id, 
+                    rettype = 'gb',
+                    retmode = 'text'
+                )
+                gb_text = handle_data.read()
+                handle_data.close()
+                match_search = re.search(r'LOCUS\s+\S+\s+(\d+)\s+bp', gb_text)
+                if match_search:
+                    return int(match_search.group(1))
+            return ''
+        except Exception as e:
+            print(f"Erro ao obter tamanho do genoma para TaxID {tax_id}: {e}")
+            return ''
     
     def set_organism_fields(self, tax_id):
         """
@@ -112,7 +156,7 @@ class MetagenomicsAssistant:
         organism_informations = {
             'Name': self.get_organism_name(tax_id),
             'Acronym': self.get_organism_acronym(tax_id),
-            'Size': f'{self.get_genome_size(tax_id)}pb',
+            'Size': f'{self.get_genome_size(tax_id)}',
             'Diseases': self.get_organism_disease(tax_id),
             'Transmissions': self.get_organism_transmission(tax_id),
             'Hosts': self.get_organism_hosts(tax_id),
@@ -137,4 +181,3 @@ class MetagenomicsAssistant:
         information_to_request = self.set_organism_fields(tax_id)
         request_body = self.build_bedrock_request(information_to_request)
         return self.aws_handler.return_bedrock_response(request_body)
-    

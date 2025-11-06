@@ -42,7 +42,7 @@ class AwsHandler:
         """
         response_from_model = self.bedrock_client.invoke_model(
             modelId = MODEL_ID,
-            bod = request_body,
+            body = request_body,
             contentType = 'application/json',
             accept = 'application/json'
         )
