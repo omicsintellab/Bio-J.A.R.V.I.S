@@ -53,3 +53,4 @@ class AwsHandler:
             return result_from_model['output']['message']['content'][0]['text']
         except:
             raise ValueError(f'Unexpected response format: {result_from_model.keys()}')
+        
