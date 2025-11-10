@@ -37,7 +37,7 @@ class AwsHandler:
         ).encode('utf-8')
 
     def return_bedrock_response(self, request_body):
-        """sumary_line
+        """
         Invoke the model by ID and return the response.
         """
         response_from_model = self.bedrock_client.invoke_model(

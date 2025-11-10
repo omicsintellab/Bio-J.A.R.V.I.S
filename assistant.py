@@ -45,14 +45,28 @@ class MetagenomicsAssistant:
     
     def get_organism_name(self, tax_id):
         """
-        Get only organism name from taxid_dict
+        Get only organism name from dict
         """
         try:
             tax_id_int = int(tax_id) if isinstance(tax_id, str) else tax_id
             taxid_dict = self.ncbi.get_taxid_translator([tax_id_int])
             return taxid_dict.get(tax_id_int, '')
         except Exception as e:
-            print(f"Erro ao obter nome para TaxID {tax_id}: {e}")
+            print(f'Error when catching organism name for {tax_id}: {e}')
+            return ''
+        
+    def get_organism_tax_id(self, organism_name):
+        """
+        Get TaxID from organism name
+        """
+        try:
+            name_dict = self.ncbi.get_name_translator([organism_name])
+            if organism_name in name_dict:
+                taxids = name_dict[organism_name]
+                return taxids[0] if taxids else ''
+            return ''
+        except Exception as e:
+            print(f'Error when catching TaxID for {organism_name}: {e}')
             return ''
     
     def get_organism_disease(self, tax_id):
@@ -181,3 +195,4 @@ class MetagenomicsAssistant:
         information_to_request = self.set_organism_fields(tax_id)
         request_body = self.build_bedrock_request(information_to_request)
         return self.aws_handler.return_bedrock_response(request_body)
+             
