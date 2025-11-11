@@ -18,6 +18,10 @@ def parse_arguments():
         '-n', '--organism_name', 
         help='Enter a valid organism name to generate the clinical report'
     )
+    # parser.add_argument(
+    #     '-md', '--model',
+    #     help='Enter a valid model name to use.'         <-- comming soon
+    # ) 
     
     args = parser.parse_args()
     

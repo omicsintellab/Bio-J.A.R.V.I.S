@@ -3,7 +3,7 @@ import os
 import boto3
 import json
 from dotenv import load_dotenv
-from constants import MODEL_ID
+from constants import MODEL_ID_1
 
 class AwsHandler:
     """
@@ -41,7 +41,7 @@ class AwsHandler:
         Invoke the model by ID and return the response.
         """
         response_from_model = self.bedrock_client.invoke_model(
-            modelId = MODEL_ID,
+            modelId = MODEL_ID_1,
             body = request_body,
             contentType = 'application/json',
             accept = 'application/json'
