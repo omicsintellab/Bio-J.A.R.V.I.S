@@ -44,19 +44,14 @@ Let’s get you up and running!
 This project uses **AWS Bedrock services**, so you’ll need to configure your credentials.
 
 1. In the root directory, **create a file** named `.env`.
-2. Paste your AWS credentials into it, like so:
+2. Paste your BEDROCK_API_KEY and AWS_DEFAULT_REGION into it, like so:
 
    ```bash
-   AWS_ACCESS_KEY_ID="..."
-   AWS_SECRET_ACCESS_KEY="..."
-   AWS_SESSION_TOKEN="..."
+   BEDROCK_API_KEY='...'
+   AWS_DEFAULT_REGION=us-east-1 
    ```
 
-   If your credentials do **not** include a session token, remove the line and **comment out line 18** of `aws_handler.py`:
-
-   ```python
-   # aws_session_token=os.getenv('AWS_SESSION_TOKEN'),
-   ```
+> Make sure to use a long-term ***BEDROCK_API_KEY*** so you only need to set it once.
 
 ---
 
