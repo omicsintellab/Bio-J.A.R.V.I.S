@@ -11,12 +11,20 @@ class AwsHandler:
     """
     def __init__(self):
         load_dotenv()
+
+        api_key = os.getenv("BEDROCK_API_KEY")
+        region = os.getenv("AWS_DEFAULT_REGION", "us-east-1")
+
+        #Verify if API KEY environment virable is defined
+        if api_key is None:
+            raise RuntimeError("The environment variable BEDROCK_API_KEY is not defined")
+
+        #Set API KEY as Token
+        os.environ["AWS_BEARER_TOKEN_BEDROCK"] = api_key
+
         self.bedrock_client = boto3.client(
             service_name='bedrock-runtime',
-            aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
-            aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
-            aws_session_token=os.getenv('AWS_SESSION_TOKEN'),
-            region_name=os.getenv('AWS_DEFAULT_REGION', 'us-east-1')
+            region_name=region
         )
 
     def get_bedrock_prompt_response(prompt_text):
