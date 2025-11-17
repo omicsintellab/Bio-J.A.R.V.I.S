@@ -10,7 +10,7 @@ ete4==4.4.0
 idna==3.11
 jaraco.functools==4.3.0
 jmespath==1.0.1
-more-itertools==10.8.0@
+more-itertools==10.8.0
 numpy==2.3.4
 pandas==2.3.3
 python-dateutil==2.9.0.post0
