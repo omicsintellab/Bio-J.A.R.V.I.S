@@ -1,10 +1,14 @@
-from enum import Enum
+import os
 
 def is_null(value):  
     """
     Validate if value is null or not.
     """   
     return value in [None, '', [], {}]
+
+def create_output(directory_path, directory_name):
+    os.mkdir(path=directory_name)
+
 
 def set_prompt_text(information_dict, text_reference):
     """
@@ -33,6 +37,7 @@ def set_prompt_text(information_dict, text_reference):
                 * The Acronym must be add, if it exists, this way: 'Organism Name(Acronym)'
             7. Write one or two continuous paragraphs, without bullet points or lists.
             8. Use {text_reference} as stylistic reference.
+            9. When citing the number of base pairs or nucleotides, say it is an "approximate" number.
             
             Your goal is to produce a concise, coherent, and professional clinical report that reflects only the confirmed and explicit knowledge available — **the absence of information must be rendered invisible to the reader.**
             """
