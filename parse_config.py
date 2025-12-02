@@ -24,13 +24,11 @@ def parse_arguments():
     # ) 
     parser.add_argument(
         '-ptbr', '--portuguese',
-        action='store_true',
-        help="Text It's going to be generated in brazilian portuguese. If not provided, text It's going to be generated in brazilian portuguese (default)"
+        help="Text It's going to be generated in brazilian portuguese. If not provided, text going to be generated in brazilian portuguese (default)"
     )
     parser.add_argument(
         '-eng', '--english',
-        action='store_true',
-        help="Text It's going to be generated in english. If not provided, text It's going to be generated in brazilian portuguese (default)"
+        help="Text It's going to be generated in english. If not provided, text going to be generated in brazilian portuguese (default)"
     )
     
     args = parser.parse_args()
@@ -70,6 +68,9 @@ def parse_handle():
             
             print(f"Found TaxID: {tax_id}")
         
+        if args.english:
+            pass
+
         # Generate the clinical record
         if not args.english or args.portuguese:
             text_language = 'Brazilian Portuguese'
