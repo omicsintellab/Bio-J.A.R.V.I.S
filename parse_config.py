@@ -24,11 +24,11 @@ def parse_arguments():
     # ) 
     parser.add_argument(
         '-ptbr', '--portuguese',
-        help="Text It's going to be generated in brazilian portuguese. If not provided, text going to be generated in brazilian portuguese (default)"
+        help="Text It's going to be generated in brazilian portuguese. If not provided, text going to be generated in english (default)"
     )
     parser.add_argument(
         '-eng', '--english',
-        help="Text It's going to be generated in english. If not provided, text going to be generated in brazilian portuguese (default)"
+        help="Text It's going to be generated in english. If not provided, text going to be generated in english (default)"
     )
     
     args = parser.parse_args()
@@ -73,7 +73,7 @@ def parse_handle():
 
         # Generate the clinical record
         if not args.english or args.portuguese:
-            text_language = 'Brazilian Portuguese'
+            text_language = 'English'
         elif args.english:
             text_language =  'English'
         else:
