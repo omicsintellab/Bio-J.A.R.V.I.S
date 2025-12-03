@@ -6,18 +6,14 @@ def is_null(value):
     """   
     return value in [None, '', [], {}]
 
-def create_output(directory_path, directory_name):
-    os.mkdir(path=directory_name)
-
-
-def set_prompt_text(information_dict, text_reference):
+def set_prompt_text(information_dict, text_reference, language):
     """
     Prompt for IA.
     """
     prompt_text = (
            f"""
             You are an assistant specialized in clinical and microbiological reports about pathogens in clinical metagenomics.
-            Your task is to write a test report in Brazilian Portuguese, in the formal and objective tone of medical literature.
+            Your task is to write a test report in {language}, in the formal and objective tone of medical literature.
             
             **Data Sourcing Strategy:**
             1. **Primary Source:** The structured data: {information_dict} must be used first.

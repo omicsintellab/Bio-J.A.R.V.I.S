@@ -22,6 +22,14 @@ def parse_arguments():
     #     '-md', '--model',
     #     help='Enter a valid model name to use.'         <-- comming soon
     # ) 
+    parser.add_argument(
+        '-ptbr', '--portuguese',
+        help="Text It's going to be generated in brazilian portuguese. If not provided, text going to be generated in english (default)"
+    )
+    parser.add_argument(
+        '-eng', '--english',
+        help="Text It's going to be generated in english. If not provided, text going to be generated in english (default)"
+    )
     
     args = parser.parse_args()
     
@@ -60,8 +68,18 @@ def parse_handle():
             
             print(f"Found TaxID: {tax_id}")
         
+        if args.english:
+            pass
+
         # Generate the clinical record
-        final_text = assistant.invoke_bedrock_model(tax_id)
+        if not args.english or args.portuguese:
+            text_language = 'English'
+        elif args.english:
+            text_language =  'English'
+        else:
+            text_language = 'Brazilian Portuguese'
+        
+        final_text = assistant.invoke_bedrock_model(tax_id, text_language)
         print(f'\nYour clinical record:\n\n{final_text}\n')
         farwell_to_user()
         
