@@ -140,8 +140,8 @@ class MetagenomicsAssistant:
                 
             handle_data = Entrez.esearch(
                 db = 'nucleotide',
-                term = f'{scientific_name} [Organism] AND complete genome',
-                retmax = 10
+                term = f'{scientific_name} [Organism] AND complete genome AND (bp OR nucleotides)',
+                retmax = 20
             )
             record_articles = Entrez.read(handle_data)
             handle_data.close()
