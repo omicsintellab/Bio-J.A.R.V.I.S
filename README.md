@@ -101,6 +101,7 @@ The mocked tests confirm that prompt payloads are built correctly and that Bedro
 
 - `tests/test_aws_handler.py` (3 tests) checks the JSON payload generated for Bedrock, validates parsing of a successful model response, and ensures malformed responses raise `ValueError`.
 - `tests/test_assistant.py` (2 tests) verifies that `build_bedrock_request` wires helper outputs into the Bedrock payload and that `set_organism_fields` filters null values while keeping valid organism metadata.
+- Every push and pull request to `main` runs these tests automatically through the GitHub Actions workflow at `.github/workflows/tests.yml`.
 
 ---
 
