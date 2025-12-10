@@ -85,6 +85,25 @@ python3 bio_jarvis.py -n "Severe acute respiratory syndrome coronavirus 2"
 
 ---
 
+## ✅ Running Tests
+
+Automated tests are powered by `pytest` and focus on the AWS Bedrock integration layer so you can verify critical behavior without live AWS credentials.
+
+1. Activate your virtual environment.
+2. Install dependencies (only required once): `pip install -r requirements.txt`
+3. Run the suite: 
+
+   ```bash
+   pytest
+   ```
+
+The mocked tests confirm that prompt payloads are built correctly and that Bedrock responses are parsed safely, including error handling for malformed responses.
+
+- `tests/test_aws_handler.py` (3 tests) checks the JSON payload generated for Bedrock, validates parsing of a successful model response, and ensures malformed responses raise `ValueError`.
+- `tests/test_assistant.py` (2 tests) verifies that `build_bedrock_request` wires helper outputs into the Bedrock payload and that `set_organism_fields` filters null values while keeping valid organism metadata.
+
+---
+
 ## 🧩 Dependencies
 
 BIO-J.A.R.V.I.S runs on **Python 3**, so make sure you have it installed and up to date:
