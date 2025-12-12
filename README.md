@@ -83,8 +83,39 @@ python3 bio_jarvis.py -n "Severe acute respiratory syndrome coronavirus 2"
 
 > ⚠️ Make sure the organism name you enter is spelled correctly!
 
----
+## 📝 Saving the responses
 
+If you want to save the generated response, you can specify the folder and the file name where the response will be saved, as well as its format.
+
+1. Saving to a file in the root directory: 
+
+```bash
+python3 bio_jarvis.py -tx 2697049 -o file_name
+```
+> The file **file_name** will be generated and the response will be saved as follows: **{ 'taxid': 'generated text' }** (JSON)
+
+2. Saving to to a file in specified directory:
+
+```bash
+python3 bio_jarvis.py -tx 2697049 -o directory_name/file_name
+```
+> The file **file_name** will be generated, and the response will be saved in the specified directory ++directory_name** using the following format: **{ 'taxid': 'generated text' }**. (JSON)
+
+3. Choosing the file format
+
+By default, if no format is specified, the response will be saved in JSON format.
+> Note: the available file formats are **json** and **txt**.
+
+- Flag: `--format` or `-f`
+
+```bash
+python3 bio_jarvis.py -tx 2697049 -o directory_name/file_name -f txt
+```
+
+> **Following the same logic as the previous section about the `--output` flag, the file will be saved in the format specified by the `--format` flag (if provided), in the specified folder and file name.**
+
+
+-
 ## 🧩 Dependencies
 
 BIO-J.A.R.V.I.S runs on **Python 3**, so make sure you have it installed and up to date:
