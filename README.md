@@ -171,4 +171,4 @@ For bugs, suggestions, or improvements, please reach out to:
 
 ## ⚖️ License
 
-> Coming soon
+This project is licensed under the MIT License.
