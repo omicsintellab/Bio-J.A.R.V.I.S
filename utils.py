@@ -1,10 +1,45 @@
 import os
+import json
 
 def is_null(value):  
     """
     Validate if value is null or not.
     """   
     return value in [None, '', [], {}]
+
+def save_output(output_path, tax_id, content, file_type="json"):
+    file_type = file_type.lower().lstrip(".")
+
+    directory = os.path.dirname(output_path)
+    archive_name = os.path.basename(output_path)
+
+    if directory:
+        os.makedirs(directory, exist_ok=True)
+
+    file_path = os.path.join(directory, f"{archive_name}.{file_type}") if directory else f"{archive_name}.{file_type}"
+
+    if file_type == "json":
+        if os.path.exists(file_path):
+            with open(file_path, "r", encoding="utf-8") as f:
+                try:
+                    existing_data = json.load(f)
+                except json.JSONDecodeError:
+                    existing_data = {}
+        else:
+            existing_data = {}
+
+        existing_data[str(tax_id)] = content
+
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(existing_data, f, indent=4, ensure_ascii=False)
+
+    elif file_type == "txt":
+        with open(file_path, "a", encoding="utf-8") as f:
+            f.write(f"{tax_id}: {content}\n")
+
+    else:
+        raise ValueError("Unsupported file type. Use 'json' or 'txt'.")
+
 
 def set_prompt_text(information_dict, text_reference, language):
     """

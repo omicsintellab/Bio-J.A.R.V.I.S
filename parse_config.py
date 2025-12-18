@@ -1,7 +1,8 @@
 import argparse
+import os
 from assistant import MetagenomicsAssistant
 from aws_handler import AwsHandler
-from utils import farwell_to_user
+from utils import farwell_to_user, save_output
 
 def parse_arguments():
     """
@@ -18,10 +19,16 @@ def parse_arguments():
         '-n', '--organism_name', 
         help='Enter a valid organism name to generate the clinical report'
     )
-    # parser.add_argument(
-    #     '-md', '--model',
-    #     help='Enter a valid model name to use.'         <-- comming soon
-    # ) 
+    parser.add_argument(
+        '-out', '--output',
+        help='Enter a valid path to save text.'        
+    ) 
+    parser.add_argument(
+        "-f", "--format",
+        choices=["json", "txt"],
+        default="json",
+        help="Output file format (json or txt). Default is json."
+    )
     parser.add_argument(
         '-ptbr', '--portuguese',
         help="Text It's going to be generated in brazilian portuguese. If not provided, text going to be generated in english (default)"
@@ -67,19 +74,20 @@ def parse_handle():
                 return
             
             print(f"Found TaxID: {tax_id}")
-        
-        if args.english:
-            pass
-
-        # Generate the clinical record
+ 
         if not args.english or args.portuguese:
             text_language = 'English'
         elif args.english:
-            text_language =  'English'
+            text_language = 'English'
         else:
             text_language = 'Brazilian Portuguese'
-        
+
+        # Generate the clinical record
         final_text = assistant.invoke_bedrock_model(tax_id, text_language)
+
+        if args.output:
+            save_output(args.output, args.taxid, final_text, args.format)
+
         print(f'\nYour clinical record:\n\n{final_text}\n')
         farwell_to_user()
         
