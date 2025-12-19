@@ -101,21 +101,26 @@ python3 bio_jarvis.py -tx 2697049 -o directory_name/file_name
 ```
 > The file **file_name** will be generated, and the response will be saved in the specified directory ++directory_name** using the following format: **{ 'taxid': 'generated text' }**. (JSON)
 
-3. Choosing the file format
+## ✅ Running Tests
 
-By default, if no format is specified, the response will be saved in JSON format.
-> Note: the available file formats are **json** and **txt**.
+Automated tests are powered by `pytest` and focus on the AWS Bedrock integration layer so you can verify critical behavior without live AWS credentials.
 
-- Flag: `--format` or `-f`
+1. Activate your virtual environment.
+2. Install dependencies (only required once): `pip install -r requirements.txt`
+3. Run the suite: 
 
-```bash
-python3 bio_jarvis.py -tx 2697049 -o directory_name/file_name -f txt
-```
+   ```bash
+   pytest
+   ```
 
-> **Following the same logic as the previous section about the `--output` flag, the file will be saved in the format specified by the `--format` flag (if provided), in the specified folder and file name.**
+The mocked tests confirm that prompt payloads are built correctly and that Bedrock responses are parsed safely, including error handling for malformed responses.
 
+- `tests/test_aws_handler.py` (3 tests) checks the JSON payload generated for Bedrock, validates parsing of a successful model response, and ensures malformed responses raise `ValueError`.
+- `tests/test_assistant.py` (2 tests) verifies that `build_bedrock_request` wires helper outputs into the Bedrock payload and that `set_organism_fields` filters null values while keeping valid organism metadata.
+- Every push and pull request to `main` runs these tests automatically through the GitHub Actions workflow at `.github/workflows/tests.yml`.
 
--
+---
+
 ## 🧩 Dependencies
 
 BIO-J.A.R.V.I.S runs on **Python 3**, so make sure you have it installed and up to date:
