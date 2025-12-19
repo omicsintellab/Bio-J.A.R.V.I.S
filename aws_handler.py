@@ -20,24 +20,33 @@ class AwsHandler:
             region_name=os.getenv('AWS_DEFAULT_REGION', 'us-east-1')
         )
 
-    def get_bedrock_prompt_response(prompt_text):
-        """
-        Get prompt and return it enconded in utf-8
-        """
-        return json.dumps(
-            {
-                'messages': [
-                    {'role': 'user', 'content': [{'text': prompt_text}]}
-                ],
-                'inferenceConfig': {
-                    'maxTokens': 300,
-                    'temperature': 0.1,
-                    'topP': 0.1
+    def get_bedrock_prompt_response_amazon_nova_micro(prompt_text):
+            return json.dumps(
+                {
+                    'messages': [
+                        {'role': 'user', 'content': [{'text': prompt_text}]}
+                    ],
+                    'inferenceConfig': {
+                        'maxTokens': 300,
+                        'temperature': 0.1,
+                        'topP': 0.1
+                    }
                 }
-            }
-        ).encode('utf-8')
+            ).encode('utf-8')
 
-    def return_bedrock_response(self, request_body):
+    def get_bedrock_prompt_response(prompt_text):
+            return json.dumps(
+                {
+                    "inputText": prompt_text,
+                    "textGenerationConfig": {
+                        "maxTokenCount": 300,
+                        "temperature": 0.1,
+                        "topP": 0.1
+                    }
+                }
+            ).encode("utf-8")
+
+    def return_bedrock_response_amazon_nova_micro(self, request_body):
         """
         Invoke the model by ID and return the response.
         """
@@ -54,4 +63,3 @@ class AwsHandler:
             return result_from_model['output']['message']['content'][0]['text']
         except:
             raise ValueError(f'Unexpected response format: {result_from_model.keys()}')
-        
