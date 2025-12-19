@@ -183,7 +183,7 @@ class MetagenomicsAssistant:
         }
         return organism_informations
     
-    def build_bedrock_request(self, information_dict, language="English"):
+    def build_bedrock_request(self, information_dict, language="english"):
         text_reference = self.set_text_to_prompt()
         if type(information_dict) == int:
             information_dict = self.set_organism_fields(information_dict)
