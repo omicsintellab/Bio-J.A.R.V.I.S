@@ -83,28 +83,39 @@ python3 bio_jarvis.py -n "Severe acute respiratory syndrome coronavirus 2"
 
 > ⚠️ Make sure the organism name you enter is spelled correctly!
 
----
+## 📝 Saving the responses
 
-## ✅ Running Tests
+If you want to save the generated response, you can specify the folder and the file name where the response will be saved, as well as its format.
 
-Automated tests are powered by `pytest` and focus on the AWS Bedrock integration layer so you can verify critical behavior without live AWS credentials.
+1. Saving to a file in the root directory: 
 
-1. Activate your virtual environment.
-2. Install dependencies (only required once): `pip install -r requirements.txt`
-3. Run the suite: 
+```bash
+python3 bio_jarvis.py -tx 2697049 -o file_name
+```
+> The file **file_name** will be generated and the response will be saved as follows: **{ 'taxid': 'generated text' }** (JSON)
 
-   ```bash
-   pytest
-   ```
+2. Saving to to a file in specified directory:
 
-The mocked tests confirm that prompt payloads are built correctly and that Bedrock responses are parsed safely, including error handling for malformed responses.
+```bash
+python3 bio_jarvis.py -tx 2697049 -o directory_name/file_name
+```
+> The file **file_name** will be generated, and the response will be saved in the specified directory ++directory_name** using the following format: **{ 'taxid': 'generated text' }**. (JSON)
 
-- `tests/test_aws_handler.py` (3 tests) checks the JSON payload generated for Bedrock, validates parsing of a successful model response, and ensures malformed responses raise `ValueError`.
-- `tests/test_assistant.py` (2 tests) verifies that `build_bedrock_request` wires helper outputs into the Bedrock payload and that `set_organism_fields` filters null values while keeping valid organism metadata.
-- Every push and pull request to `main` runs these tests automatically through the GitHub Actions workflow at `.github/workflows/tests.yml`.
+3. Choosing the file format
 
----
+By default, if no format is specified, the response will be saved in JSON format.
+> Note: the available file formats are **json** and **txt**.
 
+- Flag: `--format` or `-f`
+
+```bash
+python3 bio_jarvis.py -tx 2697049 -o directory_name/file_name -f txt
+```
+
+> **Following the same logic as the previous section about the `--output` flag, the file will be saved in the format specified by the `--format` flag (if provided), in the specified folder and file name.**
+
+
+-
 ## 🧩 Dependencies
 
 BIO-J.A.R.V.I.S runs on **Python 3**, so make sure you have it installed and up to date:
@@ -160,4 +171,4 @@ For bugs, suggestions, or improvements, please reach out to:
 
 ## ⚖️ License
 
-> Coming soon
+This project is licensed under the MIT License.
