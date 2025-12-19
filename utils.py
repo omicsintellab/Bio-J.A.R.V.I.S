@@ -40,7 +40,6 @@ def save_output(output_path, tax_id, content, file_type="json"):
     else:
         raise ValueError("Unsupported file type. Use 'json' or 'txt'.")
 
-
 def set_prompt_text(information_dict, text_reference, language):
     """
     Prompt for IA.
