@@ -83,7 +83,23 @@ python3 bio_jarvis.py -n "Severe acute respiratory syndrome coronavirus 2"
 
 > ⚠️ Make sure the organism name you enter is spelled correctly!
 
----
+## 📝 Saving the responses
+
+If you want to save the generated response, you can specify the folder and the file name where the response will be saved, as well as its format.
+
+1. Saving to a file in the root directory: 
+
+```bash
+python3 bio_jarvis.py -tx 2697049 -o file_name
+```
+> The file **file_name** will be generated and the response will be saved as follows: **{ 'taxid': 'generated text' }** (JSON)
+
+2. Saving to to a file in specified directory:
+
+```bash
+python3 bio_jarvis.py -tx 2697049 -o directory_name/file_name
+```
+> The file **file_name** will be generated, and the response will be saved in the specified directory ++directory_name** using the following format: **{ 'taxid': 'generated text' }**. (JSON)
 
 ## ✅ Running Tests
 
@@ -160,4 +176,4 @@ For bugs, suggestions, or improvements, please reach out to:
 
 ## ⚖️ License
 
-> Coming soon
+This project is licensed under the MIT License.

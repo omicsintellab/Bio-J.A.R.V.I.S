@@ -140,8 +140,8 @@ class MetagenomicsAssistant:
                 
             handle_data = Entrez.esearch(
                 db = 'nucleotide',
-                term = f'{scientific_name} [Organism] AND complete genome',
-                retmax = 10
+                term = f'{scientific_name} [Organism] AND complete genome AND (bp OR nucleotides)',
+                retmax = 20
             )
             record_articles = Entrez.read(handle_data)
             handle_data.close()
@@ -183,16 +183,16 @@ class MetagenomicsAssistant:
         }
         return organism_informations
     
-    def build_bedrock_request(self, information_dict):
+    def build_bedrock_request(self, information_dict, language):
         text_reference = self.set_text_to_prompt()
         if type(information_dict) == int:
             information_dict = self.set_organism_fields(information_dict)
 
-        prompt_text = set_prompt_text(information_dict, text_reference)
+        prompt_text = set_prompt_text(information_dict, text_reference, language)
         return AwsHandler.get_bedrock_prompt_response(prompt_text)
 
-    def invoke_bedrock_model(self, tax_id):
+    def invoke_bedrock_model(self, tax_id, language):
         information_to_request = self.set_organism_fields(tax_id)
-        request_body = self.build_bedrock_request(information_to_request)
+        request_body = self.build_bedrock_request(information_to_request, language)
         return self.aws_handler.return_bedrock_response(request_body)
              
