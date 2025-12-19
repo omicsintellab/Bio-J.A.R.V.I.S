@@ -41,9 +41,10 @@ def test_build_bedrock_request_uses_prompt_helpers(monkeypatch):
 
     captured = {}
 
-    def fake_set_prompt(info_dict, references):
+    def fake_set_prompt(info_dict, references, language):
         captured["info"] = info_dict
         captured["refs"] = references
+        captured["language"] = language
         return "FORMATTED_PROMPT"
 
     def fake_get_response(prompt_text):
@@ -58,6 +59,7 @@ def test_build_bedrock_request_uses_prompt_helpers(monkeypatch):
     assert result == b"encoded-payload"
     assert captured["info"] == {"Name": "Test organism"}
     assert captured["refs"] == ["style-a", "style-b"]
+    assert captured["language"] == "english"
     assert captured["prompt"] == "FORMATTED_PROMPT"
 
 
