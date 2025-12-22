@@ -1,95 +1,116 @@
+# parse_config.py
+
 import argparse
-import os
+from typing import Optional
 from assistant import MetagenomicsAssistant
 from aws_handler import AwsHandler
 from utils import farwell_to_user, save_output
 
-def parse_arguments():
-    """
-    Simple argument parser for TaxID or organism name input
-    """
+
+# ------------------------------------------------------------------
+# Argument parsing
+# ------------------------------------------------------------------
+
+def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description='Generate clinical record from TaxID or organism name.'
+        description="Generate a clinical report from a TaxID or organism name."
     )
-    parser.add_argument(
-        '-tx', '--taxid', 
-        help='Enter a valid TaxID to generate the clinical record'
+
+    input_group = parser.add_mutually_exclusive_group(required=True)
+    input_group.add_argument(
+        "-tx", "--taxid",
+        help="NCBI TaxID of the organism"
     )
-    parser.add_argument(
-        '-n', '--organism_name', 
-        help='Enter a valid organism name to generate the clinical report'
+    input_group.add_argument(
+        "-n", "--organism-name",
+        dest="organism_name",
+        help="Scientific name of the organism"
     )
+
     parser.add_argument(
-        '-out', '--output',
-        help='Enter a valid path to save text.'        
-    ) 
+        "-m", "--model",
+        choices=["amazon", "openai", "claude", "gemma"],
+        default="amazon",
+        help="LLM model to be used (default: amazon)"
+    )
+
+    parser.add_argument(
+        "-l", "--language",
+        choices=["english", "portuguese"],
+        default="english",
+        help="Output language (default: english)"
+    )
+
+    parser.add_argument(
+        "-o", "--output",
+        help="Directory path to save the output file"
+    )
+
     parser.add_argument(
         "-f", "--format",
         choices=["json", "txt"],
         default="json",
-        help="Output file format (json or txt). Default is json."
+        help="Output file format (default: json)"
     )
-    parser.add_argument(
-        '-ptbr', '--portuguese',
-        help="Text It's going to be generated in brazilian portuguese. If not provided, text going to be generated in english (default)"
-    )
-    parser.add_argument(
-        '-eng', '--english',
-        help="Text It's going to be generated in english. If not provided, text going to be generated in english (default)"
-    )
-    
-    args = parser.parse_args()
-    
-    # Validate that exactly one argument is provided
-    if not args.taxid and not args.organism_name:
-        parser.error("You must provide either --taxid or --organism_name")
-    
-    if args.taxid and args.organism_name:
-        parser.error("Please provide only one of --taxid or --organism_name, not both")
-    
-    return args
 
-def parse_handle():
-    """
-    Function to handle command line execution
-    """
-    # Parse command line arguments
+    return parser.parse_args()
+
+
+# ------------------------------------------------------------------
+# Main handler
+# ------------------------------------------------------------------
+
+def run_cli() -> None:
     args = parse_arguments()
-    
-    # Initialize the assistant
+
     assistant = MetagenomicsAssistant(aws_handler=AwsHandler())
-    
+
     try:
-        # Determine input type and process
+        tax_id: Optional[str]
+
         if args.taxid:
             tax_id = args.taxid
-            print(f"Generating clinical record for TaxID: {tax_id}")
-        else:  # args.organism_name
-            organism_name = args.organism_name
-            print(f"Generating clinical record for organism: {organism_name}")
-            tax_id = assistant.get_organism_tax_id(organism_name)
-            
-            if not tax_id:
-                print(f"Error: Could not find TaxID for organism '{organism_name}'\nPlease, enter a valid name or TaxID")
-                return
-            
-            print(f"Found TaxID: {tax_id}")
- 
-        if not args.english or args.portuguese:
-            text_language = 'English'
-        elif args.english:
-            text_language = 'English'
+            print(f"▶ Generating report for TaxID: {tax_id}")
         else:
-            text_language = 'Brazilian Portuguese'
+            print(f"▶ Resolving TaxID for organism: {args.organism_name}")
+            tax_id = assistant.get_organism_tax_id(args.organism_name)
 
-        # Generate the clinical record
-        final_text = assistant.invoke_bedrock_model(tax_id, text_language)
+            if not tax_id:
+                raise ValueError(
+                    f"Could not resolve TaxID for organism '{args.organism_name}'"
+                )
+
+            print(f"✔ Found TaxID: {tax_id}")
+
+        # ------------------------------------------------------------------
+        # Model dispatch
+        # ------------------------------------------------------------------
+
+        model_dispatch = {
+            "amazon": assistant.generate_with_nova,
+            "openai": assistant.generate_with_openai,
+            "claude": assistant.generate_with_claude,
+            "gemma": assistant.generate_with_gemma,
+        }
+
+        generate_fn = model_dispatch[args.model]
+        final_text = generate_fn(tax_id=int(tax_id), language=args.language)
+
+        # ------------------------------------------------------------------
+        # Output
+        # ------------------------------------------------------------------
 
         if args.output:
-            save_output(args.output, args.taxid, final_text, args.format)
+            save_output(
+                output_path=args.output,
+                tax_id=tax_id,
+                content=final_text,
+                file_format=args.format,
+            )
 
-        print(f'\nYour clinical record:\n\n{final_text}\n')
+        print("\n📄 Generated clinical report:\n")
+        print(final_text)
         farwell_to_user()
-        
-    except Exception as e:
-        print(f"An error occurred: {e}")
+
+    except Exception as exc:
+        print(f"\n❌ Error: {exc}\n")

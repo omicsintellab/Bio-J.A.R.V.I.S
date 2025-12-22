@@ -1,4 +1,4 @@
-from parse_config import parse_handle
+from parse_config import run_cli
 
 if __name__ == '__main__':
-    parse_handle()
+    run_cli()

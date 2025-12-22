@@ -1,65 +1,123 @@
-# Libraries
+# aws_handler.py
+
 import os
-import boto3
 import json
+import boto3
 from dotenv import load_dotenv
-from constants import MODEL_ID_1
+from typing import Dict, Any
+
+from constants import MODEL_ID_1, MODEL_ID_2, MODEL_ID_3, MODEL_ID_4
+from utils import extract_text_from_bedrock_response
+
 
 class AwsHandler:
     """
-    Handle AWS API conections with bedrock service
+    Handles all AWS Bedrock Runtime interactions.
     """
-    def __init__(self):
+
+    def __init__(self) -> None:
         load_dotenv()
-    
+
         self.bedrock_client = boto3.client(
-            service_name='bedrock-runtime',
-            aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
-            aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
-            aws_session_token=os.getenv('AWS_SESSION_TOKEN'),
-            region_name=os.getenv('AWS_DEFAULT_REGION', 'us-east-1')
+            service_name="bedrock-runtime",
+            region_name=os.getenv("AWS_DEFAULT_REGION", "us-east-1"),
         )
 
-    def get_bedrock_prompt_response_amazon_nova_micro(prompt_text):
-            return json.dumps(
+    # ------------------------------------------------------------------
+    # Payload builders
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def build_nova_payload(
+        prompt: str,
+        max_tokens: int = 500,
+        temperature: float = 0.1
+    ) -> bytes:
+        """
+        STRICT payload for Amazon Nova Micro.
+        Nova DOES NOT accept `type` nor `topP`.
+        """
+
+        payload = {
+            "messages": [
                 {
-                    'messages': [
-                        {'role': 'user', 'content': [{'text': prompt_text}]}
+                    "role": "user",
+                    "content": [
+                        {"text": prompt}
                     ],
-                    'inferenceConfig': {
-                        'maxTokens': 300,
-                        'temperature': 0.1,
-                        'topP': 0.1
-                    }
                 }
-            ).encode('utf-8')
+            ],
+            "inferenceConfig": {
+                "maxTokens": max_tokens,
+                "temperature": temperature,
+            },
+        }
 
-    def get_bedrock_prompt_response(prompt_text):
-            return json.dumps(
+        return json.dumps(payload).encode("utf-8")
+
+    @staticmethod
+    def build_openai_style_payload(
+        prompt: str,
+        max_tokens: int = 500,
+        temperature: float = 0.1,
+        top_p: float = 0.1
+    ) -> bytes:
+        """
+        Payload for Claude, OpenAI-style and Gemma models.
+        """
+
+        payload = {
+            "messages": [
                 {
-                    "inputText": prompt_text,
-                    "textGenerationConfig": {
-                        "maxTokenCount": 300,
-                        "temperature": 0.1,
-                        "topP": 0.1
-                    }
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": prompt
+                        }
+                    ],
                 }
-            ).encode("utf-8")
+            ],
+            "inferenceConfig": {
+                "maxTokens": max_tokens,
+                "temperature": temperature,
+                "topP": top_p,
+            },
+        }
 
-    def return_bedrock_response_amazon_nova_micro(self, request_body):
-        """
-        Invoke the model by ID and return the response.
-        """
-        response_from_model = self.bedrock_client.invoke_model(
-            modelId = MODEL_ID_1,
-            body = request_body,
-            contentType = 'application/json',
-            accept = 'application/json'
+        return json.dumps(payload).encode("utf-8")
+
+    # ------------------------------------------------------------------
+    # Internal invoke
+    # ------------------------------------------------------------------
+
+    def _invoke_model(self, model_id: str, body: bytes) -> Dict[str, Any]:
+        response = self.bedrock_client.invoke_model(
+            modelId=model_id,
+            body=body,
+            contentType="application/json",
+            accept="application/json",
         )
-        response_body_model = response_from_model['body'].read().decode('utf-8')
-        result_from_model = json.loads(response_body_model)
 
-        try:
-            return result_from_model['output']['message']['content'][0]['text']
-        except:
-            raise ValueError(f'Unexpected response format: {result_from_model.keys()}')
+        raw_body = response["body"].read().decode("utf-8")
+        return json.loads(raw_body)
+
+    # ------------------------------------------------------------------
+    # Public API
+    # ------------------------------------------------------------------
+
+    def invoke_nova_micro(self, payload: bytes) -> str:
+        result = self._invoke_model(MODEL_ID_1, payload)
+        return extract_text_from_bedrock_response(result)
+
+    def invoke_openai(self, payload: bytes) -> str:
+        result = self._invoke_model(MODEL_ID_2, payload)
+        return extract_text_from_bedrock_response(result)
+
+    def invoke_claude(self, payload: bytes) -> str:
+        result = self._invoke_model(MODEL_ID_3, payload)
+        return extract_text_from_bedrock_response(result)
+
+    def invoke_gemma(self, payload: bytes) -> str:
+        result = self._invoke_model(MODEL_ID_4, payload)
+        return extract_text_from_bedrock_response(result)

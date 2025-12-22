@@ -1,3 +1,5 @@
+# utils.py
+
 import os
 import json
 
@@ -7,8 +9,23 @@ def is_null(value):
     """   
     return value in [None, '', [], {}]
 
-def save_output(output_path, tax_id, content, file_type="json"):
-    file_type = file_type.lower().lstrip(".")
+def extract_text_from_bedrock_response(result: dict) -> str:
+    # OpenAI (GPT OSS)
+    if "output" in result:
+        return result["output"]["message"]["content"][0]["text"]
+
+    # Anthropic Claude
+    if "content" in result:
+        return result["content"][0]["text"]
+
+    # Google Gemma
+    if "outputs" in result:
+        return result["outputs"][0]["text"]
+
+    raise ValueError(f"Formato de resposta desconhecido: {result.keys()}")
+
+def save_output(output_path, tax_id, content, file_format="json"):
+    file_format = file_format.lower().lstrip(".")
 
     directory = os.path.dirname(output_path)
     archive_name = os.path.basename(output_path)
