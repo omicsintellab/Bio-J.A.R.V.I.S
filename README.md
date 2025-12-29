@@ -1,5 +1,4 @@
 
-
 # 🧬 BIO - J.A.R.V.I.S
 
 **Just an Artificial Reasoning and Very Interpretative System**
@@ -17,7 +16,7 @@ Let’s get you up and running!
 
    ```bash
    python3 -m venv venv
-   ```
+
 3. **Activate your virtual environment:**
 
    ```bash
@@ -41,23 +40,52 @@ Let’s get you up and running!
 
 ## 🔐 AWS Setup
 
-This project uses **AWS Bedrock services**, so you’ll need to configure your credentials.
+BIO - J.A.R.V.I.S uses **AWS Bedrock services** and supports **two authentication methods** that coexist without breaking each other.
 
-1. In the root directory, **create a file** named `.env`.
-2. Paste your AWS KEYS and AWS_DEFAULT_REGION into it, like so:
+### Option 1 — Environment-based authentication (default)
+
+This is the **existing and fully supported mechanism**.
+
+1. In the root directory, create a file named `.env`.
+2. Add your AWS credentials and region:
 
    ```bash
    AWS_ACCESS_KEY_ID="..."
    AWS_SECRET_ACCESS_KEY="..."
-   AWS_SESSION_TOKEN="..."
    AWS_DEFAULT_REGION="us-east-1"
    ```
 
-If **there's not an** **AWS_SESSION_TOKEN="..."**, You must paste only what It shows to and comment **line 18** from **aws_handler.py** 
+Optional (if applicable):
 
-```            
-aws_session_token=os.getenv('AWS_SESSION_TOKEN'),
+```bash
+AWS_PROFILE="your-profile"
 ```
+
+> ℹ️ This behaves exactly as before and requires no CLI changes.
+
+---
+
+### Option 2 — CLI-based authentication using `--api-key` (new)
+
+For quick local testing or demos, you can now **optionally provide an AWS Bedrock Bearer Token directly via the CLI**, without configuring AWS credentials beforehand.
+
+```bash
+python3 bio_jarvis.py -tx 2697049 --api-key ABCDEFGHIJKLMNOP...
+```
+
+#### How it works
+
+* If `--api-key` is provided:
+
+  * The value is stored as `AWS_BEARER_TOKEN_BEDROCK` in `.env`
+  * Authentication uses the provided key
+* If `--api-key` is **not** provided:
+
+  * The tool falls back to existing `.env` or AWS credentials
+* No existing authentication flow is broken
+
+> ⚠️ If the provided API key is invalid, BIO - J.A.R.V.I.S will automatically fall back to any valid AWS credentials already configured.
+
 ---
 
 ## 🧠 Running BIO-J.A.R.V.I.S
@@ -68,14 +96,13 @@ Once everything’s set up, activate your virtual environment if it’s not alre
 source venv/bin/activate
 ```
 
-Then, simply run:
+Run using a **TaxID**:
 
 ```bash
 python3 bio_jarvis.py -tx 2697049
 ```
 
-This runs the script using a **TaxID**.
-If you prefer to run it by **organism name**, use:
+Run using an **organism name**:
 
 ```bash
 python3 bio_jarvis.py -n "Severe acute respiratory syndrome coronavirus 2"
@@ -83,23 +110,31 @@ python3 bio_jarvis.py -n "Severe acute respiratory syndrome coronavirus 2"
 
 > ⚠️ Make sure the organism name you enter is spelled correctly!
 
+---
+
 ## 📝 Saving the responses
 
 If you want to save the generated response, you can specify the folder and the file name where the response will be saved, as well as its format.
 
-1. Saving to a file in the root directory: 
+1. Saving to a file in the root directory:
 
 ```bash
 python3 bio_jarvis.py -tx 2697049 -o file_name
 ```
-> The file **file_name** will be generated and the response will be saved as follows: **{ 'taxid': 'generated text' }** (JSON)
 
-2. Saving to to a file in specified directory:
+> The file **file_name** will be generated and the response will be saved as:
+> **{ "taxid": "generated text" }** (JSON)
+
+2. Saving to a file in a specified directory:
 
 ```bash
 python3 bio_jarvis.py -tx 2697049 -o directory_name/file_name
 ```
-> The file **file_name** will be generated, and the response will be saved in the specified directory ++directory_name** using the following format: **{ 'taxid': 'generated text' }**. (JSON)
+
+> The file **file_name** will be generated inside **directory_name**, using:
+> **{ "taxid": "generated text" }** (JSON)
+
+---
 
 ## ✅ Running Tests
 
@@ -107,7 +142,7 @@ Automated tests are powered by `pytest` and focus on the AWS Bedrock integration
 
 1. Activate your virtual environment.
 2. Install dependencies (only required once): `pip install -r requirements.txt`
-3. Run the suite: 
+3. Run the suite:
 
    ```bash
    pytest
@@ -115,15 +150,15 @@ Automated tests are powered by `pytest` and focus on the AWS Bedrock integration
 
 The mocked tests confirm that prompt payloads are built correctly and that Bedrock responses are parsed safely, including error handling for malformed responses.
 
-- `tests/test_aws_handler.py` (3 tests) checks the JSON payload generated for Bedrock, validates parsing of a successful model response, and ensures malformed responses raise `ValueError`.
-- `tests/test_assistant.py` (2 tests) verifies that `build_bedrock_request` wires helper outputs into the Bedrock payload and that `set_organism_fields` filters null values while keeping valid organism metadata.
-- Every push and pull request to `main` runs these tests automatically through the GitHub Actions workflow at `.github/workflows/tests.yml`.
+* `tests/test_aws_handler.py` validates Bedrock request payloads and response parsing.
+* `tests/test_assistant.py` checks assistant wiring and organism metadata handling.
+* All tests run automatically via GitHub Actions on every push and pull request.
 
 ---
 
 ## 🧩 Dependencies
 
-BIO-J.A.R.V.I.S runs on **Python 3**, so make sure you have it installed and up to date:
+BIO - J.A.R.V.I.S runs on **Python 3**, so make sure you have it installed and up to date:
 👉 [Download Python 3](https://www.python.org/downloads/)
 
 ### Required Python libraries:
@@ -134,18 +169,17 @@ BIO-J.A.R.V.I.S runs on **Python 3**, so make sure you have it installed and up 
 * [Python-dotenv](https://pypi.org/project/python-dotenv/)
 * [Pandas](https://pandas.pydata.org/)
 
-> Click on the library names to view their documentation.
 ---
 
 ## 🧾 Main Script
 
-**`bio_jarvis.py`** – This is the core script that runs the entire system.
+**`bio_jarvis.py`** — Core entry point for running the system.
 
 ---
 
 ## 🧬 About the Project
 
-This tool was developed as part of my **undergraduate research project** conducted at the
+This tool was developed as part of an **undergraduate research project** at the
 **Albert Einstein Israelite Faculty of Health Sciences, São Paulo, Brazil.**
 
 ---
@@ -154,7 +188,7 @@ This tool was developed as part of my **undergraduate research project** conduct
 
 **[Gustavo Bezerra](https://github.com/BizerraGuU)**
 
-For bugs, suggestions, or improvements, please reach out to:
+For bugs, suggestions, or improvements, contact:
 📩 **[deyvid.amgarten@usp.br](mailto:deyvid.amgarten@usp.br)**
 
 ---
@@ -167,13 +201,17 @@ For bugs, suggestions, or improvements, please reach out to:
 
 ## 🧾 Changelog
 
-**BIO - J.A.R.V.I.S v1.0 — December 2025**
+**BIO - J.A.R.V.I.S v1.1 — December 2025**
 
-* Initial release
-* For feedback or issues, feel free to get in touch!
+* Added optional CLI-based authentication via `--api-key`
+* Preserved full backward compatibility with `.env`-based AWS credentials
+* Improved usability for local testing and demos
 
 ---
 
 ## ⚖️ License
 
 This project is licensed under the MIT License.
+
+```
+
