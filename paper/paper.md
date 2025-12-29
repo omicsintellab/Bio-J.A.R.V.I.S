@@ -1,6 +1,6 @@
 ---
 title: "BIO-J.A.R.V.I.S.: Automated Clinical Interpretation for Metagenomic Reports"
-tags:
+
   - python
   - metagenomics
   - bioinformatics
@@ -21,27 +21,31 @@ bibliography: paper.bib
 ---
 # Summary
 
-Clinical metagenomics is an emerging approach that enables the identification of pathogens directly from raw patient samples, eliminating the need for microbial culture or targeted molecular assays. As this methodology becomes increasingly common in clinical and laboratory settings, there is a growing demand for tools that support the standardized and reproducible interpretation of resulting data.
+Clinical metagenomics has emerged as a powerful approach for infectious disease diagnostics, enabling unbiased identification of pathogens directly from raw patient samples without the need for microbial culture or targeted molecular assays. Over the past decade, this methodology has transitioned from a primarily research-driven technique to an increasingly adopted clinical practice, supported by advances in next-generation sequencing technologies, standardized laboratory workflows, and curated genomic reference databases.
 
-Here we present Bio-J.A.R.V.I.S., a standalone Python application designed to automate the generation of clinical interpretations from taxonomic identifications produced by metagenomic workflows. The system integrates generative artificial intelligence models with bioinformatics libraries, enabling retrieval of taxonomic information, summarization of relevant organism characteristics, and generation of consistent, accessible clinical text. Bio-J.A.R.V.I.S. was evaluated through A/B testing with physicians and clinical analysts, demonstrating high acceptance and significant potential to streamline diagnostic workflows.
+As clinical metagenomics becomes more widely implemented in routine diagnostic settings, there is a growing demand for tools that support standardized, reproducible, and clinically interpretable reporting of results. Here we present  **Bio-J.A.R.V.I.S.** , a standalone Python application designed to automate the generation of clinical interpretations from taxonomic identifications produced by metagenomic workflows. The system integrates generative artificial intelligence models with established bioinformatics libraries, enabling automated retrieval of taxonomic information, summarization of relevant organism characteristics, and generation of consistent, accessible clinical text suitable for diagnostic reporting.
+
+Bio-J.A.R.V.I.S. was evaluated through structured A/B testing with physicians and clinical analysts, demonstrating high user acceptance and substantial potential to streamline interpretative workflows in clinical metagenomics.
 
 # Statement of need
 
-Clinical metagenomics has substantially transformed infectious disease diagnostics by enabling the simultaneous detection of multiple pathogens directly from biological samples. Despite these advances, interpretation of metagenomic results remains a critical bottleneck—particularly in culture-negative infections, rare or emerging pathogens, and complex clinical scenarios. The generation of clinically meaningful interpretative text often requires extensive manual effort and specialized expertise, as illustrated by episodes within our group involving the identification of arenavirus and hantavirus infections.
+Clinical metagenomics has substantially transformed infectious disease diagnostics by enabling the simultaneous detection of multiple pathogens directly from biological samples, particularly in cases where conventional culture-based or targeted molecular methods fail. Despite these advances, interpretation of metagenomic results remains a critical bottleneck in clinical implementation, especially in culture-negative infections, rare or emerging pathogens, and complex clinical scenarios requiring expert contextualization.
 
-Additionally, the increasing volume of sequencing data has heightened the need for fast, standardized, and reproducible interpretations. Although significant progress has been made in sequencing technologies and bioinformatics pipelines, the absence of open-source tools capable of automatically converting taxonomic outputs into clinically oriented narratives has limited widespread implementation in routine diagnostics.
+The generation of clinically meaningful interpretative text often requires extensive manual effort and specialized expertise. In practice, clinicians and laboratory specialists must synthesize information from diverse external sources, including taxonomic databases, primary literature, case reports, and institutional guidelines. This challenge is exemplified by real-world diagnostic scenarios such as arenavirus and hantavirus infections, where rapid access to accurate organism-specific clinical context is essential for patient management.
 
-Bio-J.A.R.V.I.S. addresses this gap by functioning as a downstream generative AI–based microservice that transforms validated organism information into structured clinical interpretations. The system incorporates previously authored clinician-reviewed texts to guide model behavior, producing summaries that are clear, consistent, and aligned with clinical reporting practices. By reducing manual workload and enhancing interpretative standardization, Bio-J.A.R.V.I.S. supports operational efficiency and contributes to broader adoption of metagenomics in infectious disease diagnostics.
+Additionally, the rapidly increasing volume of sequencing data produced by modern laboratories has intensified the need for fast, standardized, and reproducible interpretation strategies. Although sequencing technologies and upstream bioinformatics pipelines have matured considerably, there remains a lack of open-source tools capable of automatically converting taxonomic outputs into clinically oriented narratives suitable for diagnostic reporting.
+
+Bio-J.A.R.V.I.S. addresses this gap by functioning as a downstream generative AI–based microservice that transforms validated organism information into structured clinical interpretations. The system incorporates clinician-authored and clinician-reviewed reference texts to guide model behavior, ensuring that generated summaries remain clear, consistent, and aligned with established clinical reporting practices. By reducing manual workload and improving interpretative standardization, Bio-J.A.R.V.I.S. supports operational efficiency and facilitates broader adoption of clinical metagenomics.
 
 # Evaluation and validation
 
-Bio-J.A.R.V.I.S. was evaluated using an exploratory A/B testing framework conducted by the authors. The study compared pairs of automatically generated clinical interpretations derived from identical taxonomic inputs but different prompt formulations.
+Bio-J.A.R.V.I.S. was evaluated using an exploratory A/B testing framework conducted by the authors, focusing on the comparative quality of automatically generated clinical interpretations. Pairs of interpretations were generated from identical taxonomic inputs using different prompt formulations and were independently assessed by physicians and clinical analysts.
 
-Initial statistical analysis was performed using global and pairwise chi-square tests to assess differences in prompt preference. The global chi-square test did not reveal a statistically significant difference between prompts (χ² = 1.83, p = 0.61), and none of the pairwise comparisons reached significance at the 0.05 level. These results indicate that, under frequentist hypothesis testing, the prompts are largely comparable in terms of user preference, with small observed effect sizes (global Cohen’s w = 0.14).
+Initial statistical analysis employed global and pairwise chi-square tests to assess differences in prompt preference. The global chi-square test did not identify statistically significant differences between prompts, and none of the pairwise comparisons reached significance at the 0.05 level, indicating broadly comparable performance across prompt variants with small observed effect sizes.
 
-Given the limited sample size and the exploratory nature of prompt optimization, additional Bayesian modeling was applied to better characterize relative prompt performance. A Bradley–Terry model was used to estimate latent prompt strengths across all pairwise comparisons, followed by a Bayesian bootstrap analysis to estimate the probability of each prompt being the best-performing option. This analysis identified prompt 4 as the most likely best-performing variant, with a 72.9% probability of being optimal, despite the absence of statistically significant differences in classical hypothesis testing.
+Given the limited sample size and the exploratory nature of prompt optimization, complementary Bayesian modeling was applied to better characterize relative prompt performance. A Bradley–Terry model was used to estimate latent prompt strengths across all pairwise comparisons, followed by Bayesian bootstrap analysis to estimate the probability of each prompt being the best-performing variant. This analysis identified one prompt formulation as the most likely optimal choice, despite the absence of statistically significant differences under frequentist hypothesis testing.
 
-Taken together, these results suggest that while prompt variants are broadly similar in perceived quality, Bayesian analysis supports the selection of prompt 4 as the most promising formulation for clinical interpretation generation. This approach reflects a risk-aware decision strategy commonly adopted in applied clinical and computational settings, where practical relevance and probabilistic dominance are considered alongside formal statistical significance.
+Taken together, these results support the use of probabilistic and Bayesian approaches for decision-making in applied clinical and computational settings, where practical relevance and robustness may be prioritized alongside formal statistical significance.
 
 # Features
 
@@ -66,29 +70,26 @@ Bio-J.A.R.V.I.S. provides a set of command-line tools designed to automate the r
 
 # State of the field
 
-Clinical metagenomics has advanced significantly over the past decade, driven by improvements in next-generation sequencing (NGS), the expansion of genomic databases such as NCBI, and a robust ecosystem of bioinformatics tools. Established solutions—including Kraken2, Centrifuge, MetaPhlAn, Kaiju, and IDseq—primarily focus on tasks such as taxonomic classification, genome assembly, variant detection, or quality control of sequencing data. These systems represent essential components of contemporary metagenomic workflows.
+Clinical metagenomics has advanced rapidly over the past decade, driven by improvements in next-generation sequencing technologies, the expansion of genomic reference databases such as NCBI, and the development of robust bioinformatics tools. Widely adopted platforms—including Kraken2, Centrifuge, MetaPhlAn, Kaiju, and IDseq—primarily address upstream analytical tasks such as taxonomic classification, genome assembly, and quality control.
 
-Despite these advances, current tools rarely address the interpretative stage of metagenomic diagnostics. Most platforms output taxa lists, abundance tables, or phylogenetic profiles but do not generate clinically oriented narratives that contextualize the relevance of detected organisms. Interpretation typically remains the responsibility of infectious disease specialists, microbiologists, or clinical analysts, who must consult external resources—literature databases, case reports, taxonomic repositories, and institutional guidelines—to produce comprehensive clinical summaries. This manual process is time-consuming, inconsistent across professionals, and increasingly impractical given rising sequencing throughput.
+Despite these advances, most existing tools do not address the interpretative stage of metagenomic diagnostics. Outputs are typically limited to taxa lists or abundance tables, leaving clinical interpretation to domain experts who must manually synthesize information from disparate sources. This manual process is time-consuming, subject to inter-observer variability, and increasingly impractical given rising sequencing throughput.
 
-Artificial intelligence applications in microbiology have largely focused on predictive modeling, antimicrobial resistance inference, or phenotype–genotype association, with limited attention toward automating clinical interpretation. There is currently no widely adopted open-source tool that transforms taxonomic identifications into standardized clinical narratives using generative AI. Existing laboratory reporting systems performing similar tasks are typically proprietary, restricting broader access, reproducibility, and validation.
+While artificial intelligence has been applied to microbiology in areas such as antimicrobial resistance prediction and phenotype–genotype association, the use of generative foundation models for automated clinical interpretation remains limited. Existing systems with similar functionality are often proprietary, restricting transparency, reproducibility, and independent validation.
 
-Bio-J.A.R.V.I.S. addresses this gap by operating downstream of existing metagenomic pipelines to generate consistent, explainable, and clinically relevant interpretative text. By integrating established bioinformatics libraries with generative models configured for low creativity and high factual precision, Bio-J.A.R.V.I.S. provides a reproducible, accessible, and open-source solution to a critical—but underrepresented—stage of metagenomic diagnostics.
+Bio-J.A.R.V.I.S. addresses this unmet need by operating downstream of existing metagenomic pipelines to generate consistent, explainable, and clinically relevant interpretative text. By integrating established bioinformatics libraries with generative models configured for low creativity and high factual precision, Bio-J.A.R.V.I.S. provides an open-source and reproducible solution to a critical but underrepresented stage of clinical metagenomic diagnostics.
 
 # Code availability
 
-The full source code for Bio-J.A.R.V.I.S., including documentation and example usage, is openly available on GitHub at:
-**https://github.com/omicsintellab/Bio-J.A.R.V.I.S**
-
-The repository contains installation instructions, command-line examples, and detailed guidance for executing the tool in a standalone environment. No dependencies beyond those listed in the repository are required, and the complete workflow can be reproduced directly from the provided source code.
+The full source code for Bio-J.A.R.V.I.S., including documentation and example usage, is openly available on GitHub at [https://github.com/omicsintellab/Bio-J.A.R.V.I.S](). The repository contains installation instructions, command-line examples, and detailed guidance for executing the tool in a standalone environment.
 
 # Data availability
 
-Bio-J.A.R.V.I.S. includes three CSV files containing curated organism metadata and clinician-authored interpretative texts used to enrich the prompting strategy of the generative model. These datasets are publicly available within the project’s GitHub repository and can be accessed directly for inspection or extension.
+Bio-J.A.R.V.I.S. includes curated CSV files containing organism metadata and clinician-authored interpretative texts used to inform the prompting strategy of the generative model. These datasets are publicly available within the project’s GitHub repository.
 
-In addition to the included datasets, Bio-J.A.R.V.I.S. retrieves organism information from publicly accessible NCBI resources—specifically NCBI Entrez (nucleotide database) and NCBI Taxonomy via ETE4. All external data used by the tool are openly available, ensuring full reproducibility of the workflow.
+In addition, the tool retrieves organism information from publicly accessible NCBI resources, including NCBI Entrez and the NCBI Taxonomy database via ETE4, ensuring full reproducibility of the workflow.
 
 # Acknowledgements
 
-This project was funded by the São Paulo Research Foundation (FAPESP) through an undergraduate research scholarship. The work was supported by the Instituto Israelita de Ensino e Pesquisa Albert Einstein (IIEPAE/SBIBAE), São Paulo, Brazil, and supervised by Professor Deyvid E. Amgarten, whose guidance was essential to the development of this project.
+This project was funded by the São Paulo Research Foundation (FAPESP) through an undergraduate research scholarship. The work was supported by the Instituto Israelita de Ensino e Pesquisa Albert Einstein (IIEPAE/SBIBAE), São Paulo, Brazil, and supervised by Professor Deyvid E. Amgarten.
 
 # References
