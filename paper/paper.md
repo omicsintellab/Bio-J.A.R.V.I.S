@@ -1,9 +1,11 @@
 ---
 title: "BIO-J.A.R.V.I.S.: Automated Clinical Interpretation for Metagenomic Reports"
 
+keywords:
   - python
   - metagenomics
   - bioinformatics
+
 authors:
   - name: Gustavo Bezerra de Andrade
     orcid: 0009-0007-2705-9466
@@ -11,11 +13,13 @@ authors:
   - name: Deyvid Emanuel Amgarten
     orcid: 0000-0002-2612-5990
     affiliation: 2
+
 affiliations:
   - name: Instituto Israelita de Ensino e Pesquisa Albert Einstein (IIEPAE/SBIBAE), São Paulo, Brazil
     index: 1
   - name: Genesis Genomics, São Paulo, Brazil
     index: 2
+
 date: "2025-12-09"
 bibliography: paper.bib
 ---
