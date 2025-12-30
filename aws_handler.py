@@ -39,10 +39,10 @@ class AwsHandler:
                         "content": [{"text": prompt_text}]
                     }
                 ],
-                "inferenceConfig": {
-                    "maxTokens": 300,
-                    "temperature": 0.1,
-                    "topP": 0.1
+                'inferenceConfig': {
+                    'maxTokens': 300,
+                    'temperature': 0.4,
+                    'topP': 0.4
                 }
             }
         ).encode("utf-8")
