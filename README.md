@@ -1,9 +1,17 @@
-
 # 🧬 BIO - J.A.R.V.I.S
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.00000/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00000)
 
 **Just an Artificial Reasoning and Very Interpretative System**
 
-BIO - J.A.R.V.I.S is a bioinformatics tool designed to generate **clinical records effortlessly — as simple as breathing.**
+BIO - J.A.R.V.I.S is a bioinformatics tool designed to generate **clinical reports for metagenomics tests effortlessly.**
+
+## 📄 Statement of Need
+
+Clinical metagenomics enables the unbiased identification of pathogens directly from samples. However, interpreting these results requires navigating complex taxonomy and specialized medical knowledge. **BIO-J.A.R.V.I.S** bridges this gap by automating the retrieval of organism metadata (via NCBI) and using generative AI to produce standardized, clinically relevant interpretations. It is designed to streamline the workflow for clinical analysts and researchers who need reproducible and accessible reports from metagenomic data.
 
 ---
 
@@ -16,6 +24,7 @@ Let’s get you up and running!
 
    ```bash
    python3 -m venv venv
+   ```
 
 3. **Activate your virtual environment:**
 
@@ -61,11 +70,10 @@ Optional (if applicable):
 AWS_PROFILE="your-profile"
 ```
 
-> ℹ️ This behaves exactly as before and requires no CLI changes.
 
 ---
 
-### Option 2 — CLI-based authentication using `--api-key` (new)
+### Option 2 — CLI-based authentication using `--api-key`
 
 For quick local testing or demos, you can now **optionally provide an AWS Bedrock Bearer Token directly via the CLI**, without configuring AWS credentials beforehand.
 
@@ -171,6 +179,14 @@ BIO - J.A.R.V.I.S runs on **Python 3**, so make sure you have it installed and u
 
 ---
 
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on how to submit pull requests, report issues, and suggest improvements.
+
+Please also note that this project is released with a [Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+---
+
 ## 🧾 Main Script
 
 **`bio_jarvis.py`** — Core entry point for running the system.
@@ -189,13 +205,28 @@ This tool was developed as part of an **undergraduate research project** at the
 **[Gustavo Bezerra](https://github.com/BizerraGuU)**
 
 For bugs, suggestions, or improvements, contact:
-📩 **[deyvid.amgarten@usp.br](mailto:deyvid.amgarten@usp.br)**
+📩 **[deyvid.emanuel@einstein.br](mailto:deyvid.emanuel@einstein.br)**
 
 ---
 
 ## 📚 Reference and Citation
 
-> Coming soon
+If you use this software in your research, please cite our paper:
+
+> Bezerra, G., & Amgarten, D. E. (2025). BIO-J.A.R.V.I.S.: Automated Clinical Interpretation for Metagenomic Reports. *Journal of Open Source Software (Submitted)*.
+
+BibTeX:
+
+```bibtex
+@article{BioJarvis2025,
+  author = {Gustavo Bezerra and Deyvid Emanuel Amgarten},
+  title = {BIO-J.A.R.V.I.S.: Automated Clinical Interpretation for Metagenomic Reports},
+  year = {2025},
+  publisher = {Journal of Open Source Software},
+  journal = {Journal of Open Source Software},
+  url = {https://github.com/omicsintellab/Bio-J.A.R.V.I.S}
+}
+```
 
 ---
 
@@ -212,6 +243,3 @@ For bugs, suggestions, or improvements, contact:
 ## ⚖️ License
 
 This project is licensed under the MIT License.
-
-```
-
