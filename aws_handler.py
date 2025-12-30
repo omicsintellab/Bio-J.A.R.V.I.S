@@ -1,33 +1,43 @@
 # Libraries
 import os
-import boto3
 import json
+import boto3
 from dotenv import load_dotenv
+
 from constants import MODEL_ID_1
+
 
 class AwsHandler:
     """
-    Handle AWS API conections with bedrock service
+    Handle AWS API connections with Bedrock service
     """
+
     def __init__(self):
+        # Load environment variables from .env
         load_dotenv()
-    
+
+        region = os.getenv("AWS_DEFAULT_REGION", "us-east-1")
+
+        # IMPORTANT:
+        # AWS_BEARER_TOKEN_BEDROCK is automatically picked up by the SDK
+        # It should NOT be passed as aws_session_token
         self.bedrock_client = boto3.client(
-            service_name='bedrock-runtime',
-            aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
-            aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
-            aws_session_token=os.getenv('AWS_SESSION_TOKEN'),
-            region_name=os.getenv('AWS_DEFAULT_REGION', 'us-east-1')
+            service_name="bedrock-runtime",
+            region_name=region
         )
 
-    def get_bedrock_prompt_response(prompt_text):
+    @staticmethod
+    def get_bedrock_prompt_response(prompt_text: str) -> bytes:
         """
-        Get prompt and return it enconded in utf-8
+        Build Bedrock request body and return it encoded as UTF-8
         """
         return json.dumps(
             {
-                'messages': [
-                    {'role': 'user', 'content': [{'text': prompt_text}]}
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": [{"text": prompt_text}]
+                    }
                 ],
                 'inferenceConfig': {
                     'maxTokens': 300,
@@ -35,23 +45,25 @@ class AwsHandler:
                     'topP': 0.4
                 }
             }
-        ).encode('utf-8')
+        ).encode("utf-8")
 
-    def return_bedrock_response(self, request_body):
+    def return_bedrock_response(self, request_body: bytes) -> str:
         """
-        Invoke the model by ID and return the response.
+        Invoke the Bedrock model and return the generated text
         """
-        response_from_model = self.bedrock_client.invoke_model(
-            modelId = MODEL_ID_1,
-            body = request_body,
-            contentType = 'application/json',
-            accept = 'application/json'
+        response = self.bedrock_client.invoke_model(
+            modelId=MODEL_ID_1,
+            body=request_body,
+            contentType="application/json",
+            accept="application/json"
         )
-        response_body_model = response_from_model['body'].read().decode('utf-8')
-        result_from_model = json.loads(response_body_model)
+
+        response_body = response["body"].read().decode("utf-8")
+        result = json.loads(response_body)
 
         try:
-            return result_from_model['output']['message']['content'][0]['text']
-        except:
-            raise ValueError(f'Unexpected response format: {result_from_model.keys()}')
-        
+            return result["output"]["message"]["content"][0]["text"]
+        except KeyError:
+            raise ValueError(
+                f"Unexpected Bedrock response format. Keys: {result.keys()}"
+            )

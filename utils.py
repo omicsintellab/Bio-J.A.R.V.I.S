@@ -1,5 +1,29 @@
 import os
 import json
+from pathlib import Path
+
+ENV_PATH = Path(".env")
+
+
+def write_env_var(key: str, value: str):
+    """
+    Create or update a variable inside .env file.
+    If .env does not exist, it will be created.
+    """
+    env_vars = {}
+
+    if ENV_PATH.exists():
+        with ENV_PATH.open("r") as f:
+            for line in f:
+                if "=" in line and not line.strip().startswith("#"):
+                    k, v = line.strip().split("=", 1)
+                    env_vars[k] = v
+
+    env_vars[key] = value
+
+    with ENV_PATH.open("w") as f:
+        for k, v in env_vars.items():
+            f.write(f"{k}={v}\n")
 
 def is_null(value):  
     """

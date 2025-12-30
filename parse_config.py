@@ -2,7 +2,7 @@ import argparse
 import os
 from assistant import MetagenomicsAssistant
 from aws_handler import AwsHandler
-from utils import farwell_to_user, save_output
+from utils import farwell_to_user, save_output, write_env_var
 
 def parse_arguments():
     """
@@ -36,6 +36,10 @@ def parse_arguments():
     parser.add_argument(
         '-eng', '--english',
         help="Text It's going to be generated in english. If not provided, text going to be generated in english (default)"
+    )
+    parser.add_argument(
+    '-key', '--api-key',
+        help="AWS Bedrock long term API-KEY to be saved into .env as AWS_BEARER_TOKEN_BEDROCK"
     )
     
     args = parser.parse_args()
@@ -75,6 +79,14 @@ def parse_handle():
             
             print(f"Found TaxID: {tax_id}")
  
+        if args.api_key:
+            write_env_var("AWS_BEARER_TOKEN_BEDROCK", args.api_key)
+            
+            # Initialize AFTER optional env update
+            assistant = MetagenomicsAssistant(
+                aws_handler=AwsHandler()
+            )
+
         if not args.english or args.portuguese:
             text_language = 'English'
         elif args.english:
