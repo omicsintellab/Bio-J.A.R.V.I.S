@@ -202,7 +202,7 @@ This tool was developed as part of an **undergraduate research project** at the
 
 ## 🧑‍💻 Author
 
-**[Gustavo Bezerra](https://github.com/BizerraGuU)**
+**[Gustavo Bezerra](https://github.com/BeezzS)**
 
 For bugs, suggestions, or improvements, contact:
 📩 **[deyvid.emanuel@einstein.br](mailto:deyvid.emanuel@einstein.br)**
