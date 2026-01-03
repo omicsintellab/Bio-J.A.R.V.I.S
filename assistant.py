@@ -12,7 +12,7 @@ class MetagenomicsAssistant:
     def __init__(self, llm_handler):
         self.ncbi = NCBITaxa()
         self.llm_handler = llm_handler
-        self.df_text = pd.read_csv('./files/old_reports.csv')
+        self.df_text = pd.read_pickle('./files/old_reports.pkl')
         self.df_data = pd.read_csv('./files/data_for_biojarvis.csv')
         self.df_acronym = pd.read_csv('./files/acronyms.csv')
         
