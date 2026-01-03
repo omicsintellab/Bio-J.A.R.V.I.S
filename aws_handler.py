@@ -47,6 +47,14 @@ class AwsHandler:
             }
         ).encode("utf-8")
 
+
+    def generate_text(self, prompt: str) -> str:
+        """
+        Unified interface for generating text.
+        """
+        response_bytes = self.get_bedrock_prompt_response(prompt)
+        return self.return_bedrock_response(response_bytes)
+
     def return_bedrock_response(self, request_body: bytes) -> str:
         """
         Invoke the Bedrock model and return the generated text

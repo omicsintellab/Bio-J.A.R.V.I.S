@@ -2,6 +2,7 @@ import argparse
 import os
 from assistant import MetagenomicsAssistant
 from aws_handler import AwsHandler
+from gemini_handler import GeminiHandler
 from utils import farwell_to_user, save_output, write_env_var
 
 def parse_arguments():
@@ -30,21 +31,35 @@ def parse_arguments():
         help="Output file format (json or txt). Default is json."
     )
     parser.add_argument(
-        '-ptbr', '--portuguese',
-        help="Text It's going to be generated in brazilian portuguese. If not provided, text going to be generated in english (default)"
+        '-l', '--language',
+        choices=['EN', 'PT'],
+        default='EN',
+        help="Language for the generated report (EN=English, PT=Brazilian Portuguese). Default is EN."
     )
     parser.add_argument(
-        '-eng', '--english',
-        help="Text It's going to be generated in english. If not provided, text going to be generated in english (default)"
+        '-key', '--api-key',
+        help="API Key for the chosen provider (saved to .env)"
     )
     parser.add_argument(
-    '-key', '--api-key',
-        help="AWS Bedrock long term API-KEY to be saved into .env as AWS_BEARER_TOKEN_BEDROCK"
+        '-p', '--provider',
+        choices=['aws', 'gemini'],
+        default='aws',
+        help="LLM provider to use (default: aws)"
+    )
+    
+    parser.add_argument(
+        '--update-db',
+        action='store_true',
+        help="Update the local NCBI taxonomy database"
     )
     
     args = parser.parse_args()
     
-    # Validate that exactly one argument is provided
+    # Check for update-db first
+    if args.update_db:
+        return args
+
+    # Validate that exactly one argument is provided (if not updating db)
     if not args.taxid and not args.organism_name:
         parser.error("You must provide either --taxid or --organism_name")
     
@@ -59,10 +74,28 @@ def parse_handle():
     """
     # Parse command line arguments
     args = parse_arguments()
+
+    if args.api_key:
+        if args.provider == 'gemini':
+             write_env_var("GEMINI_API_KEY", args.api_key)
+        else:
+             write_env_var("AWS_BEARER_TOKEN_BEDROCK", args.api_key)
+
+    # Instantiate handler based on provider
+    if args.provider == 'gemini':
+        handler = GeminiHandler()
+    else:
+        handler = AwsHandler()
     
     # Initialize the assistant
-    assistant = MetagenomicsAssistant(aws_handler=AwsHandler())
+    assistant = MetagenomicsAssistant(llm_handler=handler)
     
+    if args.update_db:
+        print("Updating NCBI taxonomy database. This might take a few minutes...")
+        assistant.ncbi.update_taxonomy_database()
+        print("Database updated successfully!")
+        return
+
     try:
         # Determine input type and process
         if args.taxid:
@@ -79,26 +112,16 @@ def parse_handle():
             
             print(f"Found TaxID: {tax_id}")
  
-        if args.api_key:
-            write_env_var("AWS_BEARER_TOKEN_BEDROCK", args.api_key)
-            
-            # Initialize AFTER optional env update
-            assistant = MetagenomicsAssistant(
-                aws_handler=AwsHandler()
-            )
-
-        if not args.english or args.portuguese:
-            text_language = 'English'
-        elif args.english:
-            text_language = 'English'
-        else:
+        if args.language == 'PT':
             text_language = 'Brazilian Portuguese'
+        else:
+            text_language = 'English'
 
         # Generate the clinical record
-        final_text = assistant.invoke_bedrock_model(tax_id, text_language)
+        final_text = assistant.generate_report(tax_id, text_language)
 
         if args.output:
-            save_output(args.output, args.taxid, final_text, args.format)
+            save_output(args.output, tax_id, final_text, args.format)
 
         print(f'\nYour clinical record:\n\n{final_text}\n')
         farwell_to_user()

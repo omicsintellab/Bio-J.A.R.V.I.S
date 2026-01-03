@@ -47,12 +47,13 @@ Let’s get you up and running!
 
 ---
 
-## 🔐 AWS Setup
+## 🔐 Model Setup
 
-BIO - J.A.R.V.I.S uses **AWS Bedrock services** and supports **two authentication methods** that coexist without breaking each other.
+BIO - J.A.R.V.I.S uses **LLM services** (AWS Bedrock or Google Gemini) and supports **two authentication methods** that coexist without breaking each other.
 
-### Option 1 — Environment-based authentication (default)
+### 1. AWS Bedrock (Default)
 
+#### Option 1 — Environment-based authentication
 This is the **existing and fully supported mechanism**.
 
 1. In the root directory, create a file named `.env`.
@@ -70,39 +71,42 @@ Optional (if applicable):
 AWS_PROFILE="your-profile"
 ```
 
-
----
-
-### Option 2 — CLI-based authentication using `--api-key`
-
-For quick local testing or demos, you can now **optionally provide an AWS Bedrock Bearer Token directly via the CLI**, without configuring AWS credentials beforehand.
+#### Option 2 — CLI-based authentication using `--api-key`
+For quick local testing or demos, you can provide an AWS Bedrock Bearer Token directly via the CLI.
 
 ```bash
 python3 bio_jarvis.py -tx 2697049 --api-key ABCDEFGHIJKLMNOP...
 ```
 
-#### How it works
+---
 
-* If `--api-key` is provided:
+### 2. Google Gemini
 
-  * The value is stored as `AWS_BEARER_TOKEN_BEDROCK` in `.env`
-  * Authentication uses the provided key
-* If `--api-key` is **not** provided:
+BIO-J.A.R.V.I.S also supports Google's Gemini models.
 
-  * The tool falls back to existing `.env` or AWS credentials
-* No existing authentication flow is broken
+#### How to obtain a Gemini API Key
+1. Go to [Google AI Studio](https://aistudio.google.com/app/apikey).
+2. Click on **Create API key**.
+3. Copy your API key.
 
-> ⚠️ If the provided API key is invalid, BIO - J.A.R.V.I.S will automatically fall back to any valid AWS credentials already configured.
+#### Configuration
+You can pass the API key via the CLI (which will save it to `.env` as `GEMINI_API_KEY`) or manually add it to `.env`:
+
+```bash
+GEMINI_API_KEY="your-gemini-api-key"
+```
 
 ---
 
 ## 🧠 Running BIO-J.A.R.V.I.S
 
-Once everything’s set up, activate your virtual environment if it’s not already running:
+Once everything’s set up, activate your virtual environment:
 
 ```bash
 source venv/bin/activate
 ```
+
+### Using AWS Bedrock (Default)
 
 Run using a **TaxID**:
 
@@ -114,6 +118,20 @@ Run using an **organism name**:
 
 ```bash
 python3 bio_jarvis.py -n "Severe acute respiratory syndrome coronavirus 2"
+```
+
+### Using Google Gemini
+
+To use Gemini, simply add the `--provider gemini` argument.
+
+**First run (setting the key):**
+```bash
+python3 bio_jarvis.py -n "Escherichia coli" --provider gemini --api-key YOUR_GEMINI_KEY
+```
+
+**Subsequent runs:**
+```bash
+python3 bio_jarvis.py -n "Escherichia coli" --provider gemini
 ```
 
 > ⚠️ Make sure the organism name you enter is spelled correctly!
@@ -146,7 +164,7 @@ python3 bio_jarvis.py -tx 2697049 -o directory_name/file_name
 
 ## ✅ Running Tests
 
-Automated tests are powered by `pytest` and focus on the AWS Bedrock integration layer so you can verify critical behavior without live AWS credentials.
+Automated tests are powered by `pytest`.
 
 1. Activate your virtual environment.
 2. Install dependencies (only required once): `pip install -r requirements.txt`
@@ -156,11 +174,11 @@ Automated tests are powered by `pytest` and focus on the AWS Bedrock integration
    pytest
    ```
 
-The mocked tests confirm that prompt payloads are built correctly and that Bedrock responses are parsed safely, including error handling for malformed responses.
+The suite covers the core logic and integrations with mocked external services:
 
 * `tests/test_aws_handler.py` validates Bedrock request payloads and response parsing.
-* `tests/test_assistant.py` checks assistant wiring and organism metadata handling.
-* All tests run automatically via GitHub Actions on every push and pull request.
+* `tests/test_gemini_handler.py` verifies the initialization and interaction with the Google GenAI SDK.
+* `tests/test_assistant.py` checks the assistant's wiring, organism metadata handling, and provider-agnostic report generation.
 
 ---
 
@@ -174,6 +192,7 @@ BIO - J.A.R.V.I.S runs on **Python 3**, so make sure you have it installed and u
 * [ETE4 Toolkit](https://jorgebotas.github.io/ete4-documentation/)
 * [BioPython (Entrez module)](https://biopython.org/docs/1.76/api/Bio.Entrez.html)
 * [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
+* [Google Generative AI](https://pypi.org/project/google-generativeai/)
 * [Python-dotenv](https://pypi.org/project/python-dotenv/)
 * [Pandas](https://pandas.pydata.org/)
 
@@ -231,6 +250,11 @@ BibTeX:
 ---
 
 ## 🧾 Changelog
+
+**BIO - J.A.R.V.I.S v1.2 — January 2026**
+* Added support for Google Gemini via `--provider gemini`
+* Integrated Google Generative AI SDK
+* Added support for API key management for Gemini
 
 **BIO - J.A.R.V.I.S v1.1 — December 2025**
 
