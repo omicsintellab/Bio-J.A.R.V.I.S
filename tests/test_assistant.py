@@ -4,8 +4,11 @@ import pytest
 from assistant import MetagenomicsAssistant
 
 
-class _DummyAwsHandler:
+class _DummyLLMHandler:
     """Minimal placeholder passed into MetagenomicsAssistant."""
+    
+    def generate_text(self, prompt: str) -> str:
+        return "GENERATED_REPORT_CONTENT"
 
 
 @pytest.fixture(autouse=True)
@@ -35,8 +38,9 @@ def _stub_taxonomy(monkeypatch):
     monkeypatch.setattr("assistant.NCBITaxa", DummyNCBI)
 
 
-def test_build_bedrock_request_uses_prompt_helpers(monkeypatch):
-    assistant = MetagenomicsAssistant(aws_handler=_DummyAwsHandler())
+def test_generate_report_uses_prompt_helpers(monkeypatch):
+    dummy_handler = _DummyLLMHandler()
+    assistant = MetagenomicsAssistant(llm_handler=dummy_handler)
     assistant.set_text_to_prompt = lambda: ["style-a", "style-b"]
 
     captured = {}
@@ -47,24 +51,39 @@ def test_build_bedrock_request_uses_prompt_helpers(monkeypatch):
         captured["language"] = language
         return "FORMATTED_PROMPT"
 
-    def fake_get_response(prompt_text):
-        captured["prompt"] = prompt_text
-        return b"encoded-payload"
-
     monkeypatch.setattr("assistant.set_prompt_text", fake_set_prompt)
-    monkeypatch.setattr("assistant.AwsHandler.get_bedrock_prompt_response", fake_get_response)
+    
+    # Mock data retrieval methods to avoid NCBI calls
+    monkeypatch.setattr(MetagenomicsAssistant, "get_organism_name", lambda self, tax_id: "Organism X")
+    monkeypatch.setattr(MetagenomicsAssistant, "get_organism_acronym", lambda self, tax_id: None)
+    monkeypatch.setattr(MetagenomicsAssistant, "get_genome_size", lambda self, tax_id: 2048)
+    monkeypatch.setattr(MetagenomicsAssistant, "get_organism_disease", lambda self, tax_id: "Example disease")
+    monkeypatch.setattr(MetagenomicsAssistant, "get_organism_transmission", lambda self, tax_id: "")
+    monkeypatch.setattr(MetagenomicsAssistant, "get_organism_hosts", lambda self, tax_id: "Humans")
+    
+    def fake_rank(self, tax_id, rank):
+        return {"family": "Familiaceae", "genus": "Genus test"}.get(rank)
+    monkeypatch.setattr(MetagenomicsAssistant, "get_organism_rank", fake_rank)
+    
+    # We also need to spy on the handler's generate_text to verify it received the prompt
+    original_generate_text = dummy_handler.generate_text
+    def fake_generate_text(prompt):
+        captured["prompt_sent_to_llm"] = prompt
+        return original_generate_text(prompt)
+    
+    dummy_handler.generate_text = fake_generate_text
 
-    result = assistant.build_bedrock_request({"Name": "Test organism"})
+    result = assistant.generate_report("12345", language="english")
 
-    assert result == b"encoded-payload"
-    assert captured["info"] == {"Name": "Test organism"}
+    assert result == "GENERATED_REPORT_CONTENT"
+    assert captured["info"] == {'Name': 'Organism X', 'Size': '2048', 'Diseases': 'Example disease', 'Hosts': 'Humans', 'Family': 'Familiaceae', 'Genus': 'Genus test'}
     assert captured["refs"] == ["style-a", "style-b"]
     assert captured["language"] == "english"
-    assert captured["prompt"] == "FORMATTED_PROMPT"
+    assert captured["prompt_sent_to_llm"] == "FORMATTED_PROMPT"
 
 
 def test_set_organism_fields_filters_null_entries(monkeypatch):
-    assistant = MetagenomicsAssistant(aws_handler=_DummyAwsHandler())
+    assistant = MetagenomicsAssistant(llm_handler=_DummyLLMHandler())
 
     monkeypatch.setattr(MetagenomicsAssistant, "get_organism_name", lambda self, tax_id: "Organism X")
     monkeypatch.setattr(MetagenomicsAssistant, "get_organism_acronym", lambda self, tax_id: None)

@@ -9,9 +9,9 @@ from constants import DEFAULT_EMAIL
 Entrez.email = DEFAULT_EMAIL
 
 class MetagenomicsAssistant:
-    def __init__(self, aws_handler: AwsHandler):
+    def __init__(self, llm_handler):
         self.ncbi = NCBITaxa()
-        self.aws_handler = aws_handler
+        self.llm_handler = llm_handler
         self.df_text = pd.read_csv('./files/old_reports.csv')
         self.df_data = pd.read_csv('./files/data_for_biojarvis.csv')
         self.df_acronym = pd.read_csv('./files/acronyms.csv')
@@ -183,16 +183,16 @@ class MetagenomicsAssistant:
         }
         return organism_informations
     
-    def build_bedrock_request(self, information_dict, language="english"):
+    def generate_report(self, tax_id, language="english"):
+        """
+        Generate report using the configured LLM handler
+        """
+        information_dict = self.set_organism_fields(tax_id)
+        if not information_dict or not information_dict.get('Name'):
+            return f"Error: Failed to retrieve basic organism information for TaxID {tax_id}. The TaxID might be invalid or not present in the local database. Try updating the database using the --update-db flag."
+            
         text_reference = self.set_text_to_prompt()
-        if type(information_dict) == int:
-            information_dict = self.set_organism_fields(information_dict)
-
         prompt_text = set_prompt_text(information_dict, text_reference, language)
-        return AwsHandler.get_bedrock_prompt_response(prompt_text)
+        return self.llm_handler.generate_text(prompt_text)
 
-    def invoke_bedrock_model(self, tax_id, language):
-        information_to_request = self.set_organism_fields(tax_id)
-        request_body = self.build_bedrock_request(information_to_request, language)
-        return self.aws_handler.return_bedrock_response(request_body)
              

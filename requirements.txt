@@ -57,3 +57,4 @@ traitlets==5.14.3
 tzdata==2025.2
 urllib3==2.5.0
 pytest==8.3.3
+google-generativeai==0.8.3
