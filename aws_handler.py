@@ -22,8 +22,7 @@ class AwsHandler:
         # AWS_BEARER_TOKEN_BEDROCK is automatically picked up by the SDK
         # It should NOT be passed as aws_session_token
         self.bedrock_client = boto3.client(
-            service_name="bedrock-runtime",
-            region_name=region
+            service_name="bedrock-runtime", region_name=region
         )
 
     @staticmethod
@@ -33,20 +32,10 @@ class AwsHandler:
         """
         return json.dumps(
             {
-                "messages": [
-                    {
-                        "role": "user",
-                        "content": [{"text": prompt_text}]
-                    }
-                ],
-                'inferenceConfig': {
-                    'maxTokens': 300,
-                    'temperature': 0.4,
-                    'topP': 0.4
-                }
+                "messages": [{"role": "user", "content": [{"text": prompt_text}]}],
+                "inferenceConfig": {"maxTokens": 300, "temperature": 0.4, "topP": 0.4},
             }
         ).encode("utf-8")
-
 
     def generate_text(self, prompt: str) -> str:
         """
@@ -63,7 +52,7 @@ class AwsHandler:
             modelId=MODEL_ID_1,
             body=request_body,
             contentType="application/json",
-            accept="application/json"
+            accept="application/json",
         )
 
         response_body = response["body"].read().decode("utf-8")
