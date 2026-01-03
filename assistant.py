@@ -1,3 +1,4 @@
+import logging
 from ete4 import NCBITaxa
 import json
 import pandas as pd
@@ -41,6 +42,7 @@ class MetagenomicsAssistant:
             return None
         except Exception as e:
             print(f"Erro ao obter rank {rank} para TaxID {tax_id}: {e}")
+            logging.error(f"Error getting rank {rank} for TaxID {tax_id}: {e}")
             return None
     
     def get_organism_name(self, tax_id):
@@ -53,6 +55,7 @@ class MetagenomicsAssistant:
             return taxid_dict.get(tax_id_int, '')
         except Exception as e:
             print(f'Error when catching organism name for {tax_id}: {e}')
+            logging.error(f'Error when catching organism name for {tax_id}: {e}')
             return ''
         
     def get_organism_tax_id(self, organism_name):
@@ -67,6 +70,7 @@ class MetagenomicsAssistant:
             return ''
         except Exception as e:
             print(f'Error when catching TaxID for {organism_name}: {e}')
+            logging.error(f'Error when catching TaxID for {organism_name}: {e}')
             return ''
     
     def get_organism_disease(self, tax_id):
@@ -82,6 +86,7 @@ class MetagenomicsAssistant:
             return None
         except Exception as e:
             print(f"Erro ao obter doença para TaxID {tax_id}: {e}")
+            logging.error(f"Error getting disease for TaxID {tax_id}: {e}")
             return None
     
     def get_organism_transmission(self, tax_id):
@@ -97,6 +102,7 @@ class MetagenomicsAssistant:
             return None
         except Exception as e:
             print(f"Erro ao obter transmissão para TaxID {tax_id}: {e}")
+            logging.error(f"Error getting transmission for TaxID {tax_id}: {e}")
             return None
     
     def get_organism_hosts(self, tax_id):
@@ -112,6 +118,7 @@ class MetagenomicsAssistant:
             return None
         except Exception as e:
             print(f"Erro ao obter hosts para TaxID {tax_id}: {e}")
+            logging.error(f"Error getting hosts for TaxID {tax_id}: {e}")
             return None
     
     def get_organism_acronym(self, tax_id):
@@ -127,6 +134,7 @@ class MetagenomicsAssistant:
             return None
         except Exception as e:
             print(f"Erro ao obter acrônimo para TaxID {tax_id}: {e}")
+            logging.error(f"Error getting acronym for TaxID {tax_id}: {e}")
             return None
     
     def get_genome_size(self, tax_id):
@@ -161,6 +169,7 @@ class MetagenomicsAssistant:
             return ''
         except Exception as e:
             print(f"Erro ao obter tamanho do genoma para TaxID {tax_id}: {e}")
+            logging.error(f"Error getting genome size for TaxID {tax_id}: {e}")
             return ''
     
     def set_organism_fields(self, tax_id):

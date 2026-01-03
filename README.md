@@ -43,6 +43,12 @@ Let’s get you up and running!
    pip3 install -r requirements.txt
    ```
 
+   > **For Contributors**: If you want to run tests or contribute to the project, install development dependencies:
+   > ```bash
+   > pip3 install -r requirements-dev.txt
+   > ```
+
+
 > 💡 BIO-J.A.R.V.I.S requires a Unix-based operating system (Linux or macOS) due to library dependencies.
 
 ---
