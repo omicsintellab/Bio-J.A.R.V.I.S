@@ -177,3 +177,4 @@ pyrightconfig.json
 
 # Not optimized data
 files/old_reports.csv
+.DS_Store
