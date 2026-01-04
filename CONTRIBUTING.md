@@ -42,6 +42,7 @@ This section guides you through submitting an enhancement suggestion for BIO - J
 3.  **Install dependencies**:
     ```bash
     pip install -r requirements.txt
+    pip install -r requirements-dev.txt
     ```
 4.  **Run tests**:
     ```bash

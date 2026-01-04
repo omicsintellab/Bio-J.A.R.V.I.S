@@ -11,7 +11,7 @@ BIO - J.A.R.V.I.S is a bioinformatics tool designed to generate **clinical repor
 
 ## 📄 Statement of Need
 
-Clinical metagenomics enables the unbiased identification of pathogens directly from samples. However, interpreting these results requires navigating complex taxonomy and specialized medical knowledge. **BIO-J.A.R.V.I.S** bridges this gap by automating the retrieval of organism metadata (via NCBI) and using generative AI to produce standardized, clinically relevant interpretations. It is designed to streamline the workflow for clinical analysts and researchers who need reproducible and accessible reports from metagenomic data.
+Clinical metagenomics enables the unbiased identification of pathogens directly from samples. However, interpreting these results requires navigating complex taxonomy and specialized medical knowledge. **BIO-J.A.R.V.I.S** bridges this gap by automating the retrieval of organism metadata from **[NCBI Genbank](https://www.ncbi.nlm.nih.gov/)** and utilizing **[Viral Zone](https://viralzone.expasy.org/)** as a trusted knowledge source to guide generative AI in producing standardized, clinically relevant interpretations. It is designed to streamline the workflow for clinical analysts and researchers who need reproducible and accessible reports from metagenomic data.
 
 ---
 
@@ -42,6 +42,12 @@ Let’s get you up and running!
    ```bash
    pip3 install -r requirements.txt
    ```
+
+   > **For Contributors**: If you want to run tests or contribute to the project, install development dependencies:
+   > ```bash
+   > pip3 install -r requirements-dev.txt
+   > ```
+
 
 > 💡 BIO-J.A.R.V.I.S requires a Unix-based operating system (Linux or macOS) due to library dependencies.
 
