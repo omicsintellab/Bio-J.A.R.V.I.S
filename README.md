@@ -168,6 +168,27 @@ python3 bio_jarvis.py -tx 2697049 -o directory_name/file_name
 
 ---
 
+## 📋 Arguments
+
+Here is the complete list of arguments you can use with **BIO-J.A.R.V.I.S**:
+
+| Argument | Long Argument | Description | Required |
+| :--- | :--- | :--- | :--- |
+| `-tx` | `--taxid` | Enter a valid TaxID to generate the clinical record | Yes* |
+| `-n` | `--organism_name` | Enter a valid organism name to generate the clinical report | Yes* |
+| `-p` | `--provider` | Choose the LLM provider: `aws` (default) or `gemini` | No |
+| `-key` | `--api-key` | API Key for the chosen provider (temporarily saves to `.env`) | No |
+| `-out` | `--output` | Path to save the generated report (TXT or JSON) | No |
+| `-f` | `--format` | Output file format: `json` (default) or `txt` | No |
+| `-l` | `--language` | Language for the report: `EN` (English - default) or `PT` (Portuguese) | No |
+| | `--trusted-knowledge` | Print the trusted knowledge dictionary assembled from public databases | No |
+| | `--update-db` | Update the local NCBI taxonomy database | No |
+| `-h` | `--help` | Show the help message and exit | No |
+
+> \* **Note**: You must provide either a TaxID (`-tx`) OR an Organism Name (`-n`).
+
+---
+
 ## ✅ Running Tests
 
 Automated tests are powered by `pytest`.
@@ -257,12 +278,16 @@ BibTeX:
 
 ## 🧾 Changelog
 
-**BIO - J.A.R.V.I.S v1.2 — January 2026**
+**BIO - J.A.R.V.I.S v0.1 (beta)— January 2026**
+* Added --trusted-knowledge argument to print the trusted knowledge dictionary assembled from public databases
+* Updated to google-genai library (older google-generativeai is being deprecated)
+
+**BIO - J.A.R.V.I.S — January 2026**
 * Added support for Google Gemini via `--provider gemini`
 * Integrated Google Generative AI SDK
 * Added support for API key management for Gemini
 
-**BIO - J.A.R.V.I.S v1.1 — December 2025**
+**BIO - J.A.R.V.I.S — December 2025**
 
 * Added optional CLI-based authentication via `--api-key`
 * Preserved full backward compatibility with `.env`-based AWS credentials

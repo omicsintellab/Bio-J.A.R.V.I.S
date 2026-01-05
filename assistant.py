@@ -196,11 +196,20 @@ class MetagenomicsAssistant:
         }
         return organism_informations
 
-    def generate_report(self, tax_id: str | int, language: str = "english") -> str:
+    def generate_report(
+        self,
+        tax_id: str | int,
+        language: str = "english",
+        organism_info: dict | None = None,
+    ) -> str:
         """
         Generate report using the configured LLM handler
         """
-        information_dict = self.set_organism_fields(tax_id)
+        if organism_info:
+            information_dict = organism_info
+        else:
+            information_dict = self.set_organism_fields(tax_id)
+
         if not information_dict or not information_dict.get("Name"):
             return f"Error: Failed to retrieve basic organism information for TaxID {tax_id}. The TaxID might be invalid or not present in the local database. Try updating the database using the --update-db flag."
 

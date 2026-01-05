@@ -53,6 +53,12 @@ def parse_arguments():
         help="Update the local NCBI taxonomy database",
     )
 
+    parser.add_argument(
+        "--trusted-knowledge",
+        action="store_true",
+        help="Print the trusted knowledge dictionary assembled from public databases",
+    )
+
     args = parser.parse_args()
 
     # Check for update-db first
@@ -120,8 +126,16 @@ def parse_handle():
         else:
             text_language = "English"
 
+        # Get organism info
+        organism_info = assistant.set_organism_fields(tax_id)
+
+        if args.trusted_knowledge:
+            print(f"\nTrusted Knowledge for TaxID {tax_id}:\n{organism_info}\n")
+
         # Generate the clinical record
-        final_text = assistant.generate_report(tax_id, text_language)
+        final_text = assistant.generate_report(
+            tax_id, text_language, organism_info=organism_info
+        )
 
         if args.output:
             save_output(args.output, tax_id, final_text, args.format)
