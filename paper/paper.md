@@ -114,7 +114,7 @@ Additionally, the increasing volume of sequencing data has heightened the need f
 standardized, and reproducible interpretations. Although significant progress has been made
 in sequencing technologies and bioinformatics pipelines, the absence of open-source tools
 capable of automatically converting taxonomic outputs into clinically oriented narratives has
-limited widespread implementation in routine diagnostics.
+limited widespread implementation in routine diagnostics. ![Application Flowchart](../docs/application_flowchart.png)
 
 Bio-J.A.R.V.I.S. addresses this gap by functioning as a downstream generative AI–based
 microservice that transforms validated organism information into structured clinical
