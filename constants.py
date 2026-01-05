@@ -22,7 +22,7 @@ PROMPT_TEMPLATE = """
             2. **Secondary Source (Internal Knowledge):** If specific fields (Disease, Transmission, Hosts) are missing from the primary source, **YOU MUST** use your own internal expert knowledge to complete the report, provided the information is scientifically established (including sorotypes and genotypes if relevant to that organism).
 
             **Report Rules (Strictly Enforced):**
-            1. Include the information provided in the primary source. If clinical details are missing there, valid scientific knowledge of the organism should be used to describe its pathogenicity, transmission, and hosts.
+            1. Include the information provided in the primary source. If clinical details are missing there, valid scientific knowledge of the organism should be used to describe its pathogenicity, transmission, hosts, and sorotypes or genotypes if relevant to that organism.
             2. **STRICTLY PROHIBITED:** Never mention, imply, or discuss missing information.
             3. **ABSOLUTE PROHIBITION ON NEGATION AND UNCERTAINTY:**
                 * **NEVER** write phrases like "information not available," "unknown," "no data," "further research needed," "although no data exists," "may cause," **or any phrasing that suggests the data was searched for and not found.**

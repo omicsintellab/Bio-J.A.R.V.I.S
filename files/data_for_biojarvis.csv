@@ -133,4 +133,13 @@ ID,TaxID,Rank,Organism,Hosts,Transmissions,Diseases
 132,3052230,Species,Hepacivirus hominis,Human,"Blood, Sexual",Hepatitis
 133,3052299,Species,Mammarenavirus brazilense,"Rodents, Mammals","Fecal-oral, Zoonosis, Urine","Fever, Hemorrhagic fever"
 134,3052464,Species,Orthoflavivirus denguei,Human,Arthropod bite,"Encephalitis, Fever, Joint pain, Hemorrhagic fever"
-135,3052608,Species,Pegivirus hominis,Human,"lood, Occasionally sexual",Asymptomatic
+135,3052608,Species,Pegivirus hominis,Human,"Blood, Occasionally sexual",Asymptomatic
+136,3048148,Species,Metapneumovirus hominis,Human,"Respiratory, Respiratory fluids",Respiratory infection
+137,3052040,Species,Primate bocaparvovirus 1,Human,"Respiratory, Fecal-oral","Respiratory infection, Gastroenteritis"
+138,2560525,Species,Human orthorubulavirus 2,Human,"Respiratory, Respiratory fluids","Croup, Respiratory infection"
+139,11216,Species,Human respirovirus 3,Human,"Respiratory, Respiratory fluids","Bronchiolitis, Pneumonia"
+140,2560526,Species,Human orthorubulavirus 4,Human,"Respiratory, Respiratory fluids",Respiratory infection
+141,108098,Species,Human mastadenovirus B,Human,"Respiratory, Contact","Pneumonia, Acute respiratory disease"
+142,130310,Species,Human mastadenovirus D,Human,"Contact, Eye secretions",Epidemic keratoconjunctivitis
+143,130308,Species,Human mastadenovirus E,Human,"Respiratory, Eye secretions","Respiratory infection, Conjunctivitis"
+144,2697049,No Rank,Severe acute respiratory syndrome coronavirus 2,Human,"Respiratory, Respiratory fluids",COVID-19
