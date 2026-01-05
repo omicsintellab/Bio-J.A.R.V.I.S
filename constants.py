@@ -2,7 +2,7 @@ from Bio import Entrez
 
 # ID from AWS MODEL: Amazon Nova Micro
 MODEL_ID_1 = "amazon.nova-micro-v1:0"
-MODEL_ID_GEMINI = "gemini-2.5-flash"
+MODEL_ID_GEMINI = "gemini-2.5-flash-lite"
 
 # Default e-mail to access NCBI with biopython
 DEFAULT_EMAIL = Entrez.email = "email@email.com"
@@ -19,7 +19,7 @@ PROMPT_TEMPLATE = """
             
             **Data Sourcing Strategy:**
             1. **Primary Source:** The structured data: {information_dict} must be used first.
-            2. **Secondary Source (Internal Knowledge):** If specific fields (Disease, Transmission, Hosts) are missing from the primary source, **YOU MUST** use your own internal expert knowledge to complete the report, provided the information is scientifically established.
+            2. **Secondary Source (Internal Knowledge):** If specific fields (Disease, Transmission, Hosts) are missing from the primary source, **YOU MUST** use your own internal expert knowledge to complete the report, provided the information is scientifically established (including sorotypes and genotypes if relevant to that organism).
 
             **Report Rules (Strictly Enforced):**
             1. Include the information provided in the primary source. If clinical details are missing there, valid scientific knowledge of the organism should be used to describe its pathogenicity, transmission, and hosts.
