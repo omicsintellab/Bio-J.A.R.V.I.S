@@ -7,7 +7,6 @@ from constants import PROMPT_TEMPLATE
 
 ENV_PATH = Path(".env")
 
-
 def write_env_var(key: str, value: str):
     """
     Create or update a variable inside .env file.
