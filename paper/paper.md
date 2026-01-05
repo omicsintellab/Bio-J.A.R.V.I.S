@@ -129,7 +129,8 @@ adoption of metagenomics in infectious disease diagnostics.
 ## Code availability
 
 The full source code for Bio-J.A.R.V.I.S., including documentation and example usage, is openly available on GitHub at
-[https://github.com/omicsintellab/Bio-J.A.R.V.I.S](https://github.com/omicsintellab/Bio-J.A.R.V.I.S)
+[https://github.com/omicsintellab/Bio-J.A.R.V.I.S](https://github.com/omicsintellab/Bio-J.A.R.V.I.S).
+And it is also possible to use Bio-J.A.R.V.I.S. in this Web application in an intuitive way, using the parameters available in the code as documented in the repository. Available at: [https://biojarvis.omicsintel.com/](https://biojarvis.omicsintel.com/)
 
 ## Data availability
 
