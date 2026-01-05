@@ -114,13 +114,14 @@ class MetagenomicsAssistant:
             except Exception as e:
                 logging.warning(f"Failed to query merged table for {tax_id}: {e}")
 
-            # 3. Descendants Check
-            # Check if any descendant is in the CSV
+            # 3. Direct Relatives Check (Children and Parent)
+            # Check if any direct child or parent is in the CSV
             try:
-                # 3a. Direct Children via SQL (Reliable for 'no rank' nodes)
                 if db_path:
                     with sqlite3.connect(db_path) as conn:
                         cursor = conn.cursor()
+
+                        # 3a. Direct Children
                         cursor.execute(
                             "SELECT taxid FROM species WHERE parent = ?", (int(tax_id),)
                         )
@@ -128,14 +129,16 @@ class MetagenomicsAssistant:
                         for child in children:
                             candidates.add(str(child[0]))
 
-                # 3b. Deep Descendants via ete3
-                descendants = self.ncbi.get_descendant_taxa(tax_id)
-                # Limit to reasonable number to avoid query explosion if high up in tree
-                # But for a species/genus it should be fine.
-                for desc_id in descendants:
-                    candidates.add(str(desc_id))
+                        # 3b. Parent
+                        cursor.execute(
+                            "SELECT parent FROM species WHERE taxid = ?", (int(tax_id),)
+                        )
+                        parents = cursor.fetchall()
+                        for parent in parents:
+                            candidates.add(str(parent[0]))
+
             except Exception as e:
-                logging.warning(f"Failed to get descendants for {tax_id}: {e}")
+                logging.warning(f"Failed to get direct relatives for {tax_id}: {e}")
 
             if not candidates:
                 return None
