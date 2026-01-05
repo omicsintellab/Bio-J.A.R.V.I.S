@@ -278,12 +278,16 @@ BibTeX:
 
 ## 🧾 Changelog
 
-**BIO - J.A.R.V.I.S v1.2 — January 2026**
+**BIO - J.A.R.V.I.S v0.1 (beta)— January 2026**
+* Added --trusted-knowledge argument to print the trusted knowledge dictionary assembled from public databases
+* Updated to google-genai library (older google-generativeai is being deprecated)
+
+**BIO - J.A.R.V.I.S — January 2026**
 * Added support for Google Gemini via `--provider gemini`
 * Integrated Google Generative AI SDK
 * Added support for API key management for Gemini
 
-**BIO - J.A.R.V.I.S v1.1 — December 2025**
+**BIO - J.A.R.V.I.S — December 2025**
 
 * Added optional CLI-based authentication via `--api-key`
 * Preserved full backward compatibility with `.env`-based AWS credentials
