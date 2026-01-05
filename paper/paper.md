@@ -38,7 +38,7 @@ Clinical metagenomics (mNGS) has emerged as a powerful approach for infectious d
 
 As mNGS becomes more widely implemented in routine diagnostic settings, there is a growing demand for tools that support standardized, reproducible, and clinically interpretable reporting of results. Here we present **Bio-J.A.R.V.I.S.**, a standalone Python application designed to automate the generation of clinical interpretations from taxonomic identifications produced by metagenomic bioinformatics workflows. The system integrates generative artificial intelligence features with established bioinformatics libraries, enabling automated retrieval of taxonomic information, summarization of relevant organism characteristics, and generation of consistent, accessible clinical text suitable for diagnostic reporting.
 
-Bio-J.A.R.V.I.S. was evaluated through structured A/B testing with physicians and clinical analysts, demonstrating high user acceptance and substantial potential to streamline interpretative workflows in clinical metagenomics.
+Bio-J.A.R.V.I.S. was evaluated through structured A/B testing with physicians and clinical analysts, demonstrating high user acceptance and substantial potential to streamline interpretative workflows in clinical metagenomics. Thus, considering the seriousness of the field in which Bio-J.A.R.V.I.S. is situated, reliable knowledge from public and trustworthy databases (e.g., NCBI) was used, from which information about the organism is retrieved. Through testing, the following attributes were identified as well accepted: name, modes of transmission, hosts, genome size (in base pairs), family, genus, and acronym (when available).
 
 ## Statement of need
 
@@ -115,6 +115,8 @@ standardized, and reproducible interpretations. Although significant progress ha
 in sequencing technologies and bioinformatics pipelines, the absence of open-source tools
 capable of automatically converting taxonomic outputs into clinically oriented narratives has
 limited widespread implementation in routine diagnostics. ![Application Flowchart](../docs/application_flowchart.png)
+
+Thus, Bio-J.A.R.V.I.S. performs the production/generation of a concise text that conveys informative value by using reliable knowledge from public databases (e.g., NCBI) about the identified organisms (based on their name or taxonomic identifier). As observed through interviews and a prior textual analysis, it was found that, for the generated text to be coherent with existing texts, it needed—whenever available—to include data/references for the following organism-related information: name, modes of transmission, hosts, genome size (in base pairs), family, genus, and acronym (when available).
 
 Bio-J.A.R.V.I.S. addresses this gap by functioning as a downstream generative AI–based
 microservice that transforms validated organism information into structured clinical
