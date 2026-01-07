@@ -3,15 +3,15 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![DOI](https://joss.theoj.org/papers/10.21105/joss.00000/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00000)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.00000/status.svg)]()
 
 **Just an Artificial Reasoning and Very Interpretative System**
 
 BIO - J.A.R.V.I.S is a bioinformatics tool designed to generate **clinical reports for metagenomics tests effortlessly.**
 
-## 📄 Statement of Need
+## 📄 Summary
 
-Clinical metagenomics enables the unbiased identification of pathogens directly from samples. However, interpreting these results requires navigating complex taxonomy and specialized medical knowledge. **BIO-J.A.R.V.I.S** bridges this gap by automating the retrieval of organism metadata from **[NCBI Genbank](https://www.ncbi.nlm.nih.gov/)** and utilizing **[Viral Zone](https://viralzone.expasy.org/)** as a trusted knowledge source to guide generative AI in producing standardized, clinically relevant interpretations. It is designed to streamline the workflow for clinical analysts and researchers who need reproducible and accessible reports from metagenomic data.
+Bio-J.A.R.V.I.S. is an open-source tool that generates standardized, clinician-oriented interpretation text from clinical metagenomics (mNGS) pathogen identifications, addressing the “final-mile” reporting bottleneck that still requires substantial manual expertise. It operates downstream of existing mNGS pipelines and portals as a workflow-agnostic interpretation layer: given a TaxID or organism name, it resolves the taxon, retrieves organism trusted knowledge from public reference databases (notably NCBI and ViralZone), and combines this evidence with clinician-authored exemplar texts in structured prompts to constrain an LLM toward factual, low-variance outputs. The software has been evaluated through structured A/B testing with physicians and clinical analysts, is available both as a public GitHub repository and a web application, and ships curated datasets (CSV resources and prompt shots) to support reproducible, community-ready deployment and adaptation across clinical mNGS workflows.
 
 ---
 
@@ -246,9 +246,10 @@ This tool was developed as part of an **undergraduate research project** at the
 
 ---
 
-## 🧑‍💻 Author
+## 🧑‍💻 Authors
 
-**[Gustavo Bezerra](https://github.com/BeezzS)**
+**[Gustavo Bezerra](https://github.com/BeezzS)**  
+**[Deyvid Amgarten](https://github.com/deyvidamgarten)**
 
 For bugs, suggestions, or improvements, contact:
 📩 **[deyvid.emanuel@einstein.br](mailto:deyvid.emanuel@einstein.br)**
@@ -297,4 +298,4 @@ BibTeX:
 
 ## ⚖️ License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](LICENSE.md).

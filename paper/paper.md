@@ -29,93 +29,58 @@ affiliations:
   - name: Genesis Genomics, São Paulo, Brazil
     index: 3
 
-date: "2026-01-07"
+date: 7 January 2026
 bibliography: paper.bib
 ---
 ## Summary
 
-Clinical metagenomics (mNGS) has emerged as a powerful approach for infectious disease diagnostics, enabling unbiased identification of pathogens directly from raw patient samples without the need for microbial culture or targeted molecular assays. Over the past decade, this methodology has transitioned from a primarily research-driven technique to an increasingly adopted clinical practice, supported by advances in next-generation sequencing technologies (NGS) and curated genomic reference databases.
-
-As mNGS becomes more widely implemented in routine diagnostic settings, there is a growing demand for tools that support standardized, reproducible, and clinically interpretable reporting of results. Here we present **Bio-J.A.R.V.I.S.**, a standalone Python application designed to automate the generation of clinical interpretations from taxonomic identifications produced by metagenomic bioinformatics workflows. The system integrates generative artificial intelligence features with established bioinformatics libraries, enabling automated retrieval of trusted information, summarization of relevant organism characteristics, and generation of consistent, accessible clinical text suitable for diagnostic reporting.
-
-Bio-J.A.R.V.I.S. was evaluated through structured A/B testing with physicians and clinical analysts, demonstrating high user acceptance and substantial potential to streamline interpretative workflows in clinical metagenomics. Given the clinical context in which Bio-J.A.R.V.I.S. is used, we rely on reliable, publicly available reference databases ([NCBI](https://www.ncbi.nlm.nih.gov/) and [ViralZone](https://viralzone.expasy.org/)) as trusted knowledge sources from which organism-level information is retrieved. During testing, the following attributes were identified as the most consistently useful and well accepted: organism name, disease,modes of transmission, hosts, genome size, family, genus, and acronym (when available).
-
+Bio-J.A.R.V.I.S. is an open-source tool that generates standardized, clinician-oriented interpretation text from clinical metagenomics (mNGS) pathogen identifications, addressing the “final-mile” reporting bottleneck that still requires substantial manual expertise. It operates downstream of existing mNGS pipelines and portals as a workflow-agnostic interpretation layer: given a TaxID or organism name, it resolves the taxon, retrieves organism trusted knowledge from public reference databases (notably NCBI and ViralZone), and combines this evidence with clinician-authored exemplar texts in structured prompts to constrain an LLM toward factual, low-variance outputs. The software has been evaluated through structured A/B testing with physicians and clinical analysts, is available both as a public GitHub repository and a web application, and ships curated datasets (CSV resources and prompt shots) to support reproducible, community-ready deployment and adaptation across clinical mNGS workflows.
 
 ## Statement of need
 
-Clinical metagenomics (mNGS) has substantially transformed infectious disease diagnostics by enabling the simultaneous detection of multiple pathogens directly from biological samples. Despite these advances, interpretation of metagenomic results remains a critical bottleneck, particularly in culture-negative infections, rare or emerging pathogens, and complex clinical scenarios [@chiu2019clinical]. In practice, translating a taxonomic identification into a concise, clinically oriented narrative still requires substantial manual effort and domain expertise, as illustrated by our diagnostic experiences with arenavirus and hantavirus infections [@jcm_hantavirus_2020; @cmr_arenavirus_2024].
+Clinical metagenomics (mNGS) has substantially transformed infectious disease diagnostics by enabling the simultaneous detection of multiple pathogens directly from clinical samples (blood, cerebrospinal fluid, nasopharyngeal swab, etc.). Despite these advances, interpretation of metagenomic results remains a critical bottleneck, particularly in culture-negative infections, rare or emerging pathogens, and complex clinical scenarios [@chiu2019clinical]. In practice, translating a taxonomic identification into a concise, clinically oriented narrative still requires substantial manual effort and domain expertise, as illustrated by our diagnostic experiences with emerging arenaviruses and hantaviruses infections [@demellomalta2020sabia; @seara2024hantavirus].
 
-Bio-J.A.R.V.I.S. was developed to streamline this downstream interpretive step by automatically generating standardized clinical interpretation text from taxonomic identifications. The tool retrieves organism metadata from public reference databases ([NCBI](https://www.ncbi.nlm.nih.gov/) and [ViralZone](https://viralzone.expasy.org/)) and combines these facts with clinician-authored example texts to guide generation through structured prompting. To support clinical reporting requirements, Bio-J.A.R.V.I.S. is designed to minimize variability and prioritize factual consistency while producing clear and reproducible interpretations that can be integrated into routine diagnostic workflows.
+Bio-J.A.R.V.I.S. targets clinical laboratory professionals and clinical microbiology/infectious disease teams who need to communicate metagenomic findings as standardized interpretive text in routine reporting workflows. Existing mNGS pipelines and platforms typically focus on bioinformatics processing, taxonomic classification, and result exploration. However, they do not provide an open, reusable layer dedicated to generating clinician-oriented interpretation text grounded in reference knowledge. 
 
-## Features
-
-Bio-J.A.R.V.I.S. provides a command-line tool designed to automate the retrieval, interpretation, and generation of clinical text from metagenomic results.
-
-### TaxID and Organism Name as Input
-
-Users may provide either a NCBI standardized TaxID or an organism name, which is resolved against the NCBI Taxonomy database using the ETE4 toolkit [@ete4]. Once the organism is identified, the system retrieves additional information from the NCBI nucleotide database via BioPython and Entrez libraries [@biopython; @ncbi_entrez]. These data are subsequently processed by the LLM foundation model to produce a structured clinical interpretation.
-
-**Input:** Valid TaxID or organism name as standardized by NCBI.
-**Output:** Clinical interpretation text printed to standard output.
-
-### Portuguese and English Text Generation
-
-Bio-J.A.R.V.I.S. supports multilingual output, allowing users to specify American English or Brazilian Portuguese through optional language flags. English is used as the default language when no flag is provided.
-
-**Input:** `--language EN` or `--language PT`
-**Output:** Clinical interpretation text in the selected language.
-
-### Output and Format Options
-
-Generated interpretations may be saved to a file using an output flag to downstream bioinformatics pipelines. If only a filename is provided, the system saves the output as a JSON file by default, using the TaxID as the key and the generated text as the value. Output format may also be explicitly defined as JSON or plain text.
-
-**Input:** `--output`; optional `--format` (`json` or `txt`)
-**Output:** File saved at the specified location in the chosen or default format.
-
-### Generative AI Provider
-
-Bio-J.A.R.V.I.S. allows users to select between two generative AI providers: [AWS Bedrock](https://aws.amazon.com/bedrock/) and [Google Gemini](https://aistudio.google.com/). Because clinical reporting requires low variability and high factual consistency, the system supports models configured for deterministic behavior and reduced creative variance, following best practices in prompt engineering and feedback from users [@delavega2023temperature; @duarte2025systemprompts].
-
-**Input:** `--provider` followed by `aws` or `gemini`
-**Output:** Clinical interpretation generated using the selected model.
-
-For aws provider, the amazon.nova-micro-v1:0 model is used. For gemini provider, the gemini-2.5-flash model is used. Models will be updated as new versions are released.
+Here we present a stand-alone tool that was developed to streamline this downstream interpretive step by automatically generating standardized clinical interpretation text from taxonomic identifications. The tool retrieves organism metadata from public reference databases and combines these facts with clinician-authored example texts to guide generation through structured prompting. To support clinical reporting requirements, Bio-J.A.R.V.I.S. is designed to minimize variability and prioritize factual consistency while producing clear and reproducible interpretations that can be integrated into routine diagnostic workflows.
 
 ## State of the field
 
-Current clinical metagenomics workflows and software ecosystems have largely focused on sequencing, quality control, taxonomic classification, and result summarization (e.g., lists of detected organisms and abundance tables). While these components are essential, they typically do not address the final-mile challenge of producing clinician-oriented interpretive narratives that contextualize an organism for reporting and decision support [@chiu2019clinical]. As a result, many laboratories still rely on manual, expert-driven writing to transform taxonomic outputs into standardized text suitable for clinical communication.
+Clinical metagenomics software ecosystems have matured around core analytical steps such as host filtering, quality control, taxonomic classification, assembly, alignment, and interactive result exploration. Representative examples include end-to-end pipelines and portals such as IDseq [@kalantar2020idseq], as well as widely used classifiers such as Kraken2 [@wood2019kraken2] and clinical-focused pipelines such as SURPI [@naccache2014surpi]. These tools are essential for producing validated organism detections and summarizing evidence (e.g., reads/contigs assigned to taxa, abundance estimates, and supporting alignments). 
 
-Additionally, the increasing volume of sequencing data has increased the need for fast,
-standardized, and reproducible interpretations. Although significant progress has been made
-in sequencing technologies and bioinformatics pipelines, the absence of open-source tools
-capable of automatically converting taxonomic outputs into clinically oriented narratives has
-limited widespread implementation in routine diagnostics.
+However, the “final-mile” step of converting a taxonomic call into a clinician-oriented interpretation narrative (e.g., organism context, disease it causes, transmission, host range, and reporting-relevant caveats) is still typically handled manually. This gap becomes more acute as sequencing volumes increase and diagnostic workflows demand fast, standardized, and reproducible interpretations—particularly for culture-negative cases and rare or emerging pathogens, where interpretation requires careful contextualization beyond a taxon label. 
 
-Recent progress in large language models has created an opportunity to automate narrative generation; however, clinical reporting demands grounded outputs, transparent provenance of organism facts, and controlled variability to reduce the risk of inconsistent or misleading language. Bio-J.A.R.V.I.S. positions itself as a downstream interpretation layer that bridges this gap by grounding generation in public reference databases and by using structured prompting anchored in clinician-authored examples. In doing so, it complements existing metagenomic pipelines rather than replacing them, providing a reproducible mechanism to convert validated taxonomic findings into consistent, clinically aligned interpretation text.
+Bio-J.A.R.V.I.S. addresses this specific missing layer by operating downstream of existing pipelines: it takes taxonomic identifications as input and generates standardized clinical interpretation text grounded in public reference databases. Rather than extending a single portal or pipeline, Bio-J.A.R.V.I.S. is designed as a portable, open, workflow-agnostic component that can integrate with outputs from multiple classifiers and platforms. The scholarly contribution is not another taxonomic workflow, but a reproducible mechanism for grounded narrative generation suitable for clinical communication, decoupled from any one analysis stack.
 
-Thus, Bio-J.A.R.V.I.S. performs the generation of a concise text that conveys informative value by using reliable knowledge from public databases (e.g., NCBI) about the identified organisms (based on their name or taxonomic identifier). As observed through interviews and a prior textual analysis, it was found that, for the generated text to be coherent with existing texts, it needed—whenever available—to include data/references for the following organism-related information: organism name, disease, modes of transmission, hosts, genome size, family, genus, and acronym (when available). A scheme of the information used to generate the text is shown in the figure below.
+
+## Software Design
+
+Bio-J.A.R.V.I.S. is designed as a downstream “interpretation layer” that converts validated taxonomic identifications generated by bioinfomatics pipelines into clinician-oriented narrative text. The central design trade-off is between fluency and clinical reliability: unrestricted generation can produce polished but unstable or poorly grounded statements, while rigid templates can become brittle and hard to maintain. Bio-J.A.R.V.I.S. addresses this by grounding generation in external reference knowledge and by constraining model behavior through structured prompting engineering.
+
+The architecture separates the workflow into (i) taxon resolution, (ii) evidence retrieval, and (iii) controlled text generation. Users provide a TaxID or organism name; the system resolves the organism against NCBI Taxonomy [@ncbitaxonomy2012] and retrieves structured metadata from the public reference sources NCBI [@benson2005genbank] and ViralZone [@hulo2011viralzone], complemented by curated project CSVs and clinician-authored exemplar texts. This evidence is assembled into a structured prompt (including two-shot examples) and passed to an LLM through a provider-agnostic interface, configured for low-variance output to improve reproducibility across runs.
+
+Attribute selection reflects clinical reporting needs observed during interviews and prior textual analysis: organism name, disease, modes of transmission, hosts, genome size (bp), family, genus, and acronym (when available). Prompt variants were evaluated via clinician/analyst A/B testing; full methods and analyses are provided as a jupyter notebook in the repository. The resulting design intentionally complements existing metagenomics pipelines by keeping interpretation logic modular, portable, and decoupled from any single analysis stack.
 
 ![Application Flowchart](../docs/application_flowchart.png)
 
-Bio-J.A.R.V.I.S. addresses this gap by functioning as a downstream generative AI–based
-microservice that transforms validated organism information into structured clinical
-interpretations. The system incorporates previously authored clinician-reviewed texts to guide
-model behavior, producing summaries that are clear, consistent, and aligned with clinical
-reporting practices. By reducing manual workload and enhancing interpretative
-standardization, Bio-J.A.R.V.I.S. supports operational efficiency and contributes to broader
-adoption of metagenomics in infectious disease diagnostics.
 
-## Code availability
+## Research Impact Statement
+
+Bio-J.A.R.V.I.S. provides an open and reusable “interpretation layer” for clinical metagenomics: given a validated taxonomic identification, it generates clinician-oriented interpretation text grounded in public reference sources. The software has already been evaluated via structured A/B testing with physicians and clinical analysts, indicating high user acceptance and practical potential to streamline interpretative workflows in routine mNGS reporting. 
+
+To support real-world adoption beyond a single lab environment, Bio-J.A.R.V.I.S. is released as open-source software with documentation and example usage in a public GitHub repository, and it is also available through a web application that exposes the same configurable parameters for interactive use. 
+
+## AI Usage Disclosure
+
+Bio-J.A.R.V.I.S. uses third-part large language model at runtime to generate clinical interpretation text from structured prompts grounded in public reference databases and curated resources. During development, generative AI tools were also used to draft code, documentation and manuscript text; all AI-assisted prose was reviewed and edited by the authors for correctness, clarity and accuracy. The example texts (provided as prompt shots) were exclusively written by a physician or clinical analyst. Feedbacks to prompt engineering were also provided by physicians and clinical analysts. Factual organism attributes included in prompts were sourced from public reference databases (e.g., NCBI and ViralZone) rather than generated freely by the model.
+
+## Data and Code Availability
 
 The full source code for Bio-J.A.R.V.I.S., including documentation and example usage, is openly available on GitHub at
 [https://github.com/omicsintellab/Bio-J.A.R.V.I.S](https://github.com/omicsintellab/Bio-J.A.R.V.I.S).
-And it is also possible to use Bio-J.A.R.V.I.S. in a Web application, using the parameters available in the code as documented in the repository. Available at: [https://biojarvis.omicsintel.com/](https://biojarvis.omicsintel.com/)
+It is also possible to use Bio-J.A.R.V.I.S as a Web application available at: [https://biojarvis.omicsintel.com/](https://biojarvis.omicsintel.com/)
 
-## Data availability
-
-Bio-J.A.R.V.I.S. includes curated CSV files containing organism metadata and clinician-authored interpretative texts used to inform the prompting strategy of the generative model. These datasets are publicly available within the project’s GitHub repository.
-
-In addition, the tool retrieves organism information from publicly accessible NCBI resources, including NCBI Entrez and the NCBI Taxonomy database via ETE4, and from Viral Zone datasets, ensuring full reproducibility of the workflow.
+Bio-J.A.R.V.I.S. includes curated CSV files containing organism metadata and clinician-authored interpretative texts used to inform the prompting strategy of the generative model. These datasets are publicly available within the project’s GitHub repository. In addition, the tool retrieves organism information from publicly accessible NCBI resources, including NCBI Entrez [@baxevanis2006searching] and the NCBI Taxonomy database via ETE4 [@huerta2016ete], and from Viral Zone datasets [@hulo2011viralzone], ensuring full reproducibility of the workflow.
 
 ## Acknowledgements
 
