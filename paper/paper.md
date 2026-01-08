@@ -84,6 +84,6 @@ Bio-J.A.R.V.I.S. includes curated CSV files containing organism metadata and cli
 
 ## Acknowledgements
 
-This study was financed, in part, by the São Paulo Research Foundation (FAPESP), Brasil. Process Number #2024/17790-9. We thank physicians, clinical analysts, and students for their valuable input and feedback. We also thank the Clinical Laboratory of the Hospital Albert Einstein for their support.
+This study was financed, in part, by the São Paulo Research Foundation (FAPESP), Brasil. Process Number #2024/17790-9. We thank physicians, clinical analysts, and students for their valuable input and feedback. We also thank the Clinical Laboratory of the Hospital Albert Einstein and the Information Technology and Bioinformatics team of the Genesis Genomics for their support.
 
 ## References
